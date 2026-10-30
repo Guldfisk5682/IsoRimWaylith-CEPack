@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- IsoRim Waylith - Combat Extended Pack: CE projectiles drawn in IsoRim's 3D view (IsoRim public Api only, Api 20+).
+       IsoRim.dll is IsoRim Waylith's; override with -p:IsoRimDll=<path> to build against a worktree.
+       CombatExtended.dll is the Workshop copy (not shipped: Private=false). -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>IsoRimWaylith_CEPack</AssemblyName>
+    <RootNamespace>IsoRimCEPack</RootNamespace>
+    <OutputPath>..\1.7\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <DebugType>none</DebugType>
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <Optimize>true</Optimize>
+    <RimDir Condition="'$(RimDir)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld</RimDir>
+    <WorkshopDir Condition="'$(WorkshopDir)' == ''">$(RimDir)\..\..\workshop\content\294100</WorkshopDir>
+    <IsoRimDll Condition="'$(IsoRimDll)' == ''">$(RimDir)\Mods\IsoRim17\1.7\Assemblies\IsoRim.dll</IsoRimDll>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="obj\**;bin\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp"><HintPath>$(RimDir)\Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityStubs"><HintPath>$(RimDir)\UnityStubs.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="0Harmony"><HintPath>$(WorkshopDir)\2009463077\1.7\Assemblies\0Harmony.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="Waylith"><HintPath>$(RimDir)\Waylith.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="IsoRim"><HintPath>$(IsoRimDll)</HintPath><Private>false</Private></Reference>
+    <Reference Include="CombatExtended"><HintPath>$(WorkshopDir)\2890901044\Assemblies\CombatExtended.dll</HintPath><Private>false</Private></Reference>
+  </ItemGroup>
+</Project>

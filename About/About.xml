@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>IsoRim Waylith - Combat Extended Pack</name>
+  <author>Lin</author>
+  <packageId>Peren.IsoRimWaylith.CEPack</packageId>
+  <supportedVersions>
+    <li>1.7</li>
+  </supportedVersions>
+  <modDependencies>
+    <li>
+      <packageId>Peren.IsoRim17</packageId>
+      <displayName>IsoRim Waylith</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3819577715</steamWorkshopUrl>
+    </li>
+    <li>
+      <packageId>CETeam.CombatExtended</packageId>
+      <displayName>Combat Extended</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2890901044</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>Peren.IsoRim17</li>
+    <li>Peren.IsoRimProjectZ</li>
+    <li>CETeam.CombatExtended</li>
+  </loadAfter>
+  <description>Combat Extended in IsoRim's 3D view.
+
+- Bullets, shells and grenades fly at Combat Extended's real height, from the muzzle
+- Mortar shells drawn on their real arc, like IsoRim's own shells
+- Works on IsoRimZ floors
+
+让 Combat Extended 在 IsoRim 的 3D 视角中正常显示。
+
+- 子弹、炮弹和手雷按 Combat Extended 的真实高度从枪口飞出
+- 迫击炮弹沿真实弹道显示，与 IsoRim 自己的炮弹一致
+- 支持 IsoRimZ 的楼层</description>
+</ModMetaData>
