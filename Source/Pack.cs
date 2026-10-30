@@ -95,13 +95,14 @@ namespace IsoRimCEPack
         // CE height units to IsoRim cells (see the header).
         public static float CellsPerUnit => IsoRim.Api.WallHeight / CollisionVertical.WallCollisionHeight;
 
-        // Harness counters.
+        // Harness counters, and the harness switch (Harness: drawing off shows CE's own drawing).
         public static int Drawn, DrawnLobbed, Errors;
+        public static bool Enabled = true;
 
         public static bool Prefix(ProjectileCE __instance)
         {
             ProjectileCE p = __instance;
-            if (!IsoRim.Api.ViewReady || p == null || p.def?.graphicData == null || p.Map == null)
+            if (!Enabled || !IsoRim.Api.ViewReady || p == null || p.def?.graphicData == null || p.Map == null)
             {
                 return true;
             }
@@ -123,16 +124,33 @@ namespace IsoRimCEPack
             }
         }
 
-        private static void Draw(ProjectileCE p)
+        // Where the projectile is drawn now: true space over its own floor (x, z the game's rows, y cells over that floor).
+        private static Vector3 Point(ProjectileCE p, Vector3 e)
         {
             Flight f = flights.GetValue(p, Begin);
-            float k = CellsPerUnit;
-            Vector3 e = exactPosition(p);
             Vector2 o = originRef(p);
             float done = new Vector2(e.x - o.x, e.z - o.y).magnitude;
             float rest = f.fade > 0.01f ? 1f - Mathf.Clamp01(done / f.fade) : 0f;
-            // true space over the projectile's own floor: x, z the game's rows, y cells
-            Vector3 at = new Vector3(e.x + f.lead.x * rest, Mathf.Max(0f, e.y * k + f.lift * rest), e.z + f.lead.z * rest);
+            return new Vector3(e.x + f.lead.x * rest, Mathf.Max(0f, e.y * CellsPerUnit + f.lift * rest), e.z + f.lead.z * rest);
+        }
+
+        // Harness: CE's height a tick ago (CE units).
+        public static float LastHeight(ProjectileCE p) => lastPosRef(p).y;
+
+        // Harness: CE's point and the drawn one.
+        public static string Describe(ProjectileCE p)
+        {
+            Vector3 e = exactPosition(p);
+            Vector3 at = Point(p, e);
+            return "CE " + e.ToString("F2") + " drawn " + at.ToString("F2") + " seen over ground " + (IsoRim.Api.ViewReady ? IsoRim.Api.ScreenToGround(IsoRim.Api.WorldToScreen(at)).ToString("F1") : "-");
+        }
+
+        private static void Draw(ProjectileCE p)
+        {
+            float k = CellsPerUnit;
+            Vector3 e = exactPosition(p);
+            Vector2 o = originRef(p);
+            Vector3 at = Point(p, e);
             if (!IsoRim.Api.FloorShown(at))
             {
                 return;
@@ -228,6 +246,14 @@ namespace IsoRimCEPack
                     Vector3 muzzle = IsoRim.Api.Muzzle(owner, p.equipmentDef, owner is Building_Turret ? owner.DrawPos : from, dir);
                     f.lead = new Vector3(muzzle.x - from.x, 0f, muzzle.z - from.z);
                     f.lift = muzzle.y - p.shotHeight * CellsPerUnit;
+                }
+                if (Harness.On)
+                {
+                    Log.Message(Pack.Tag + "launch " + p.def.defName + " (" + p.GetType().Name + ", " + (p.def.projectile.flyOverhead ? "lobbed" : "direct") + ") by "
+                        + (p.launcher != null ? p.launcher.LabelShort : "-") + " with " + (p.equipmentDef != null ? p.equipmentDef.defName : "-")
+                        + ": muzzle owner " + (owner != null ? owner.LabelShort : "none") + ", CE start " + from.ToString("F2") + " height " + p.shotHeight.ToString("0.00")
+                        + " (" + (p.shotHeight * CellsPerUnit).ToString("0.00") + " cells), lead " + f.lead.ToString("F2") + " lift " + f.lift.ToString("0.00")
+                        + ", fade over " + f.fade.ToString("0.0") + ", tick " + Find.TickManager.TicksGame);
                 }
             }
             catch (Exception e)
