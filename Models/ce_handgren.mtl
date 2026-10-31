@@ -1,0 +1,65 @@
+# IsoRim Waylith - Combat Extended Pack: CE's canister hand grenades (tools/make_ce_handgren.py). Fixed colours
+# sampled from CE's textures (lifted ~1.08x); fuze and spoon parts carry IsoRim's Metal swatch.
+newmtl hg_smoke_body
+Kd 0.373 0.390 0.313
+newmtl hg_smoke_band
+Kd 1.000 1.000 0.720
+newmtl hg_smoke_neck
+Kd 0.733 0.737 0.745
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_smoke_head
+Kd 0.627 0.635 0.627
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_smoke_spoon
+Kd 0.178 0.178 0.178
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_smoke_crate
+Kd 0.381 0.335 0.305
+newmtl hg_smoke_lid
+Kd 0.584 0.512 0.462
+newmtl hg_concussion_body
+Kd 0.216 0.216 0.216
+newmtl hg_concussion_band
+Kd 0.961 0.919 0.212
+newmtl hg_concussion_neck
+Kd 0.610 0.614 0.618
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_concussion_head
+Kd 0.542 0.542 0.542
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_concussion_spoon
+Kd 0.178 0.178 0.178
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_concussion_crate
+Kd 0.322 0.305 0.203
+newmtl hg_concussion_lid
+Kd 0.432 0.411 0.258
+newmtl hg_flashbang_rim
+Kd 0.449 0.487 0.364
+newmtl hg_flashbang_core
+Kd 0.169 0.402 0.640
+newmtl hg_flashbang_cap
+Kd 0.449 0.487 0.364
+newmtl hg_flashbang_spoon
+Kd 0.178 0.178 0.178
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_flashbang_crate
+Kd 0.470 0.508 0.470
+newmtl hg_flashbang_lid
+Kd 0.644 0.686 0.644
+newmtl hg_firefoam_body
+Kd 0.690 0.199 0.199
+newmtl hg_firefoam_band
+Kd 0.851 0.851 0.856
+newmtl hg_firefoam_fuze
+Kd 0.707 0.707 0.707
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_firefoam_spoon
+Kd 0.178 0.178 0.178
+map_Kd IsoRim/Swatches/Metal
+newmtl hg_firefoam_crate
+Kd 0.712 0.144 0.144
+newmtl hg_firefoam_lid
+Kd 0.881 0.203 0.203
+newmtl hg_firefoam_trim
+Kd 0.915 0.915 0.915

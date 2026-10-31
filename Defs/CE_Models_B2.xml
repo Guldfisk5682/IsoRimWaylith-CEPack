@@ -4,7 +4,8 @@
      IsoRim's mini-turret base re-aimed to CE's art; the auto-turrets are not rotatable); <topModel> = the gun, barrel
      along +x from its yaw pivot, drawn at topHeight (= the bore) and turned to the turret's aim. IsoRim takes the muzzle
      (shots, flashes) from the gun model's barrel end. Fixed colours from CE's art (Models/ce_b2.mtl). CIWS_Blaster is
-     commented out in CE and gets no entry. -->
+     commented out in CE and gets no entry. Fix M19 (2026-10-31): base hub and guns raised 0.36 over
+     IsoRim's low firing wall (0.76): bores 0.90 / 0.91 / 0.90. -->
 <Defs>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_Medium</defName>
@@ -13,7 +14,7 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_medium_gun.obj</topModel>
-    <topHeight>0.54</topHeight>
+    <topHeight>0.90</topHeight>
   </IsoRim.ModelDef>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_Heavy</defName>
@@ -22,7 +23,7 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_heavy_gun.obj</topModel>
-    <topHeight>0.55</topHeight>
+    <topHeight>0.91</topHeight>
   </IsoRim.ModelDef>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_Blaster</defName>
@@ -31,6 +32,6 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_blaster_gun.obj</topModel>
-    <topHeight>0.54</topHeight>
+    <topHeight>0.90</topHeight>
   </IsoRim.ModelDef>
 </Defs>

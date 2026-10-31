@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack: CE's own canister hand grenades (fix M20, models from tools/make_ce_handgren.py,
+     approved 2026-10-31). CE's hand grenades are weapons to IsoRim (equipmentType Primary, under Weapons), and a weapon only
+     shows a model bound to that very thing (category entries such as R3D_Category_Grenades are skipped for weapons): without
+     these entries they were their sprite made solid on the ground, in the hand and in flight. Bound by thingDef they show the
+     model with "Weapons as 3D models" on (ground, hand, thrown) and the card with it off. As IsoRim's own grenades: held size,
+     <layFlat>, <rotation>-18. Stack models a / b / c follow CE's Graphic_StackCount art (1 / more / full stack: the crate);
+     b and c are stored pre-turned for the layFlat tip and the rotation, so they stand upright, square to the cell. No overArt:
+     they follow the weapons switch, not the item switches. -->
+<Defs>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Weapon_GrenadeSmoke</defName>
+    <thingDef>CE_Weapon_GrenadeSmoke</thingDef>
+    <model>Models/ce_handgren_smoke.obj</model>
+    <stackModels>
+      <li>Models/ce_handgren_smoke.obj</li>
+      <li>Models/ce_handgren_smoke_b.obj</li>
+      <li>Models/ce_handgren_smoke_c.obj</li>
+    </stackModels>
+    <rotation>-18</rotation>
+    <layFlat>true</layFlat>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Weapon_GrenadeConcussion</defName>
+    <thingDef>CE_Weapon_GrenadeConcussion</thingDef>
+    <model>Models/ce_handgren_concussion.obj</model>
+    <stackModels>
+      <li>Models/ce_handgren_concussion.obj</li>
+      <li>Models/ce_handgren_concussion_b.obj</li>
+      <li>Models/ce_handgren_concussion_c.obj</li>
+    </stackModels>
+    <rotation>-18</rotation>
+    <layFlat>true</layFlat>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Weapon_GrenadeFlashbang</defName>
+    <thingDef>CE_Weapon_GrenadeFlashbang</thingDef>
+    <model>Models/ce_handgren_flashbang.obj</model>
+    <stackModels>
+      <li>Models/ce_handgren_flashbang.obj</li>
+      <li>Models/ce_handgren_flashbang_b.obj</li>
+      <li>Models/ce_handgren_flashbang_c.obj</li>
+    </stackModels>
+    <rotation>-18</rotation>
+    <layFlat>true</layFlat>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Weapon_GrenadeFirefoam</defName>
+    <thingDef>CE_Weapon_GrenadeFirefoam</thingDef>
+    <model>Models/ce_handgren_firefoam.obj</model>
+    <stackModels>
+      <li>Models/ce_handgren_firefoam.obj</li>
+      <li>Models/ce_handgren_firefoam_b.obj</li>
+      <li>Models/ce_handgren_firefoam_c.obj</li>
+    </stackModels>
+    <rotation>-18</rotation>
+    <layFlat>true</layFlat>
+  </IsoRim.ModelDef>
+</Defs>

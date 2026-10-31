@@ -3,7 +3,8 @@
      2026-10-30). As IsoRim's own turrets (R3D_Turret_*): <model> = the base, built facing north as CE's base art and turned
      with the building; <topModel> = the gun, barrel along +x from its yaw pivot, drawn at topHeight (= the bore) and turned
      to the turret's aim. IsoRim takes the muzzle (shots, flashes) from the gun model's barrel end. Fixed colours from CE's
-     art (Models/ce_b1.mtl). -->
+     art (Models/ce_b1.mtl). Fix M19 (2026-10-31): the guns raised over IsoRim's low firing wall (0.76): bores M240 0.90,
+     KPV 0.94 (its tripod head and legs raised), AGS-30 0.92; the Flak (1.00) as it was. -->
 <Defs>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_M240B</defName>
@@ -12,7 +13,7 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_m240b_gun.obj</topModel>
-    <topHeight>0.48</topHeight>
+    <topHeight>0.90</topHeight>
   </IsoRim.ModelDef>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_KPV</defName>
@@ -21,7 +22,7 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_kpv_gun.obj</topModel>
-    <topHeight>0.62</topHeight>
+    <topHeight>0.94</topHeight>
   </IsoRim.ModelDef>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_AGSThirty</defName>
@@ -30,7 +31,7 @@
     <surfaceHeight>0.00</surfaceHeight>
     <builtFor>(1, 1)</builtFor>
     <topModel>Models/ce_ags30_gun.obj</topModel>
-    <topHeight>0.40</topHeight>
+    <topHeight>0.92</topHeight>
   </IsoRim.ModelDef>
   <IsoRim.ModelDef>
     <defName>R3D_CE_Turret_Flak</defName>

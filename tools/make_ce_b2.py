@@ -7,6 +7,9 @@
 #     foot pads (S (0,-0.54), NE/NW (+-0.50,+0.29)), small foot pads as the art draws them, a round hub d0.30 (dark top
 #     #252525, rim #464646) in place of the octagonal head (same height 0.36..0.46); CE's darker colours;
 #   2 bores 0.54 (Medium, Blaster) and 0.55 (Heavy); the gun bodies float 0.0105 above the hub top (0.46);
+#   M19 (2026-10-31, user playtest: the guns sat below IsoRim's low firing wall top 0.76): base hub and guns raised by
+#     MG_LIFT 0.36 (shape unchanged; the legs keep their feet, their top ends move up with the hub): bores 0.90 (Medium,
+#     Blaster) and 0.91 (Heavy);
 #   4 left out: Medium muzzle band, Heavy muzzle slots / thin rear strip / top-plate seam; kept: Medium sleeve cover,
 #     Heavy sleeve slot, the Blaster's 3 vents;  5 the Blaster's olive cell is plain olive (no glow).
 # IsoRim's turret conventions as batch 1 (make_ce_b1.py): <model> = the base (CE's auto-turrets are not rotatable);
@@ -191,6 +194,7 @@ def leg(name, mat, top, foot, r, n=8):
 
 
 # ---------------------------------------------------------------- base: IsoRim's mini-turret base, re-aimed to CE's art
+MG_LIFT = 0.36                       # M19: added on top of the approved v1 heights below
 HUB_TOP = 0.46
 BODY_Z = HUB_TOP + 0.0105            # gun bodies start here (>= 0.01 clear of the hub top)
 CE_FEET = [(0.0, -0.54), (0.50, 0.29), (-0.50, 0.29)]   # foot-pad centres on CE's MachineGunBase (cells, +y north)
@@ -234,6 +238,11 @@ def isorim_leg_ends():
     return legs, centre
 
 
+def up(parts, dz):
+    """M19: parts moved up by dz."""
+    return [p.moved(lambda v: (v[0], v[1], v[2] + dz)) for p in parts] if dz else parts
+
+
 def rotz(v, a):
     c, s = math.cos(a), math.sin(a)
     return (v[0] * c - v[1] * s, v[0] * s + v[1] * c, v[2])
@@ -251,7 +260,7 @@ def mgbase():
         used.add(j)
         tx, ty = CE_FEET[j]
         da = math.atan2(ty, tx) - ang0
-        top = [rotz(v, da) for v in tp]
+        top = [add(rotz(v, da), (0.0, 0.0, MG_LIFT)) for v in tp]
         offs = [rotz(sub(v, fc), da) for v in fp]
         lift = max(0.0, 0.002 - min(fc[2] + o[2] for o in offs))
         foot = [add((tx, ty, fc[2] + lift), o) for o in offs]
@@ -267,8 +276,8 @@ def mgbase():
         faces = [(0, 1, 2, 3, 4), (5, 6, 7, 8, 9)] + [(k, (k + 1) % 5, (k + 1) % 5 + 5, k + 5) for k in range(5)]
         P.append(Part('leg%d' % i, 'ceb2_leg', v, faces))
         P.append(cyl('pad%d' % i, 'ceb2_foot', (tx, ty, 0.0), (tx, ty, 0.025), 0.055, 6, 0.5))
-    P.append(cyl('hub_rim', 'ceb2_rim', (0, 0, 0.36), (0, 0, 0.45), 0.15, 12))
-    P.append(cyl('hub_top', 'ceb2_hub', (0, 0, 0.45), (0, 0, HUB_TOP), 0.125, 12))
+    P.append(cyl('hub_rim', 'ceb2_rim', (0, 0, 0.36 + MG_LIFT), (0, 0, 0.45 + MG_LIFT), 0.15, 12))
+    P.append(cyl('hub_top', 'ceb2_hub', (0, 0, 0.45 + MG_LIFT), (0, 0, HUB_TOP + MG_LIFT), 0.125, 12))
     return P
 
 
@@ -287,7 +296,8 @@ def hump(name, mat, x0, x1b, x1t, yb, yt, z0, z1):
 
 
 # ---------------------------------------------------------------- Medium
-MED_BORE = 0.54
+MED_BORE0 = 0.54
+MED_BORE = MED_BORE0 + MG_LIFT
 
 
 def medium_gun():
@@ -298,12 +308,13 @@ def medium_gun():
     P.append(loft('neck', 'ceb2_med_sleeve', 0.10, 0.135, BODY_Z + 0.004, 0.61, 0.17, 0.08, 0.49, 0.59))
     P.append(box('sleeve', 'ceb2_med_sleeve', 0.17, 0.38, -0.08, 0.08, 0.49, 0.59))
     P.append(box('cover', 'ceb2_med_cover', 0.18, 0.31, -0.04, 0.04, 0.59, 0.603))
-    P.append(cyl('barrel', 'ceb2_med_grey', (0.37, 0, MED_BORE), (0.56, 0, MED_BORE), 0.04, 8, 0.5))
-    return P
+    P.append(cyl('barrel', 'ceb2_med_grey', (0.37, 0, MED_BORE0), (0.56, 0, MED_BORE0), 0.04, 8, 0.5))
+    return up(P, MG_LIFT)
 
 
 # ---------------------------------------------------------------- Heavy
-HVY_BORE = 0.55
+HVY_BORE0 = 0.55
+HVY_BORE = HVY_BORE0 + MG_LIFT
 
 
 def heavy_gun():
@@ -315,13 +326,14 @@ def heavy_gun():
     P.append(loft('front', 'ceb2_hvy_plate', 0.07, 0.19, BODY_Z, 0.63, 0.10, 0.15, BODY_Z, 0.60))
     P.append(box('sleeve', 'ceb2_hvy_sleeve', 0.10, 0.41, -0.10, 0.10, 0.49, 0.61))
     P.append(box('slot', 'ceb2_hvy_plate', 0.15, 0.30, -0.03, 0.03, 0.61, 0.622))
-    P.append(cyl('collar', 'ceb2_hvy_collar', (0.40, 0, HVY_BORE), (0.46, 0, HVY_BORE), 0.10, 8, 0.5, r1=0.06))
-    P.append(cyl('barrel', 'ceb2_hvy_barrel', (0.45, 0, HVY_BORE), (0.82, 0, HVY_BORE), 0.05, 8, 0.5))
-    return P
+    P.append(cyl('collar', 'ceb2_hvy_collar', (0.40, 0, HVY_BORE0), (0.46, 0, HVY_BORE0), 0.10, 8, 0.5, r1=0.06))
+    P.append(cyl('barrel', 'ceb2_hvy_barrel', (0.45, 0, HVY_BORE0), (0.82, 0, HVY_BORE0), 0.05, 8, 0.5))
+    return up(P, MG_LIFT)
 
 
 # ---------------------------------------------------------------- Blaster
-BL_BORE = 0.54
+BL_BORE0 = 0.54
+BL_BORE = BL_BORE0 + MG_LIFT
 
 
 def blaster_gun():
@@ -336,7 +348,7 @@ def blaster_gun():
         P.append(box('vent%d' % i, 'ceb2_bl_vent', vx, vx + 0.07 if i < 2 else vx + 0.06, -0.025, 0.025, 0.585, 0.597))
     P.append(loft('taper', 'ceb2_bl_dark', 0.52, 0.075, 0.495, 0.585, 0.57, 0.05, 0.50, 0.58))
     P.append(box('tip', 'ceb2_bl_tip', 0.57, 0.66, -0.05, 0.05, 0.50, 0.58))
-    return P
+    return up(P, MG_LIFT)
 
 
 # ---------------------------------------------------------------- output + checks

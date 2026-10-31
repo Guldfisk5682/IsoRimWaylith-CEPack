@@ -6,6 +6,10 @@
 #     bore 0.62; Flak bore 1.00, shield leaning back 20 degrees, rear part as the truncated cone the art shows;
 #   - AGS drum (v2, user review): a flat plain disc like the real drum, axis sideways, d0.28 front-back (the art's 0.28),
 #     0.11 thick, flat end faces, on the gun's right at the same mounting point;
+#   - M19 (2026-10-31, user playtest: the guns sat below IsoRim's low firing wall top 0.76 although CE fires them over
+#     it): every gun raised by LIFT (shape unchanged): the head / post / pintle and the gun move up, the tripod legs keep
+#     their feet and get longer; bores M240 0.48 -> 0.90, KPV 0.62 -> 0.94 (v2: its hub and legs raised, not the post), AGS-30 0.40 -> 0.92 (its drum foot = 0.76);
+#     the Flak (bore 1.00) stays;
 #   - left out: M240 charging handle, AGS cocking lever and sight mount, KPV olive trim line, Flak muzzle band; the Flak
 #     fuze-setter's 3 holes only as shallow dark recesses.
 # IsoRim's turret conventions (IsoRim17, read only: Defs/Models.xml R3D_Turret_*, Patches.DrawTurret_Prefix,
@@ -192,6 +196,11 @@ def octagon(across):
     return [(R * math.cos(math.pi / 8 + k * math.pi / 4), R * math.sin(math.pi / 8 + k * math.pi / 4)) for k in range(8)]
 
 
+def up(parts, dz):
+    """M19: parts moved up by dz."""
+    return [p.moved(lambda v: (v[0], v[1], v[2] + dz)) for p in parts] if dz else parts
+
+
 def leg(name, mat, top, foot, r, n=8):
     """A tube from the head (top) to a foot pad; the end is lifted so its lower rim stays above the ground."""
     d = norm(sub(foot, top))
@@ -201,15 +210,18 @@ def leg(name, mat, top, foot, r, n=8):
 
 
 # ---------------------------------------------------------------- M240B
-M240_BORE = 0.48
+M240_BORE0 = 0.48                 # the approved v1 bore; M19 lift on top
+M240_LIFT = 0.42
+M240_BORE = M240_BORE0 + M240_LIFT
 
 
 def m240_base():
     P = []
-    P.append(cyl('head', 'ceb1_grey', (0, 0, 0.30), (0, 0, 0.37), 0.085))
-    P.append(cyl('pintle', 'ceb1_grey', (0, 0, 0.37), (0, 0, 0.39), 0.03, 12))
+    L = M240_LIFT
+    P.append(cyl('head', 'ceb1_grey', (0, 0, 0.30 + L), (0, 0, 0.37 + L), 0.085))
+    P.append(cyl('pintle', 'ceb1_grey', (0, 0, 0.37 + L), (0, 0, 0.39 + L), 0.03, 12))
     feet = [(0.0, 0.50), (-0.38, -0.41), (0.38, -0.41)]
-    top = (0, 0, 0.335)
+    top = (0, 0, 0.335 + L)
     for i, (fx, fy) in enumerate(feet):
         P.append(leg('leg%d' % i, 'ceb1_black', top, (fx, fy, 0.02), 0.025))
         P.append(cyl('foot%d' % i, 'ceb1_black', (fx, fy, 0.0), (fx, fy, 0.02), 0.045, 12))
@@ -226,22 +238,25 @@ def m240_gun():
     P.append(box('cover', 'ceb1_black', -0.37, 0.0, -0.045, 0.045, 0.53, 0.57))
     P.append(box('stock', 'ceb1_grey', -0.57, -0.37, -0.03, 0.03, 0.43, 0.53))
     P.append(box('beltbox', 'ceb1_m240_ammo', -0.13, 0.0, 0.045, 0.29, 0.42, 0.54))
-    P.append(cyl('barrel', 'ceb1_m240_barrel', (-0.01, 0, M240_BORE), (0.56, 0, M240_BORE), 0.025, 12))
-    P.append(cyl('hider', 'ceb1_m240_hider', (0.56, 0, M240_BORE), (0.72, 0, M240_BORE), 0.03, 12))
-    return P
+    P.append(cyl('barrel', 'ceb1_m240_barrel', (-0.01, 0, M240_BORE0), (0.56, 0, M240_BORE0), 0.025, 12))
+    P.append(cyl('hider', 'ceb1_m240_hider', (0.56, 0, M240_BORE0), (0.72, 0, M240_BORE0), 0.03, 12))
+    return up(P, M240_LIFT)
 
 
 # ---------------------------------------------------------------- KPV
-KPV_BORE = 0.62
+KPV_BORE0 = 0.62
+KPV_LIFT = 0.32                   # M19 v2 (user): the whole stand taller: hub (tripod head) up by the lift, longer
+KPV_BORE = KPV_BORE0 + KPV_LIFT   # splayed legs to the same feet, the centre post its v1 length
 
 
 def kpv_base():
     P = []
-    P.append(cyl('hub', 'ceb1_grey', (0, 0, 0.0), (0, 0, 0.16), 0.10))
-    P.append(cyl('post', 'ceb1_grey', (0, 0, 0.16), (0, 0, 0.47), 0.06))
+    L = KPV_LIFT
+    P.append(cyl('hub', 'ceb1_grey', (0, 0, 0.0 + L), (0, 0, 0.16 + L), 0.10))
+    P.append(cyl('post', 'ceb1_grey', (0, 0, 0.16 + L), (0, 0, 0.47 + L), 0.06))
     feet = [(0.0, 0.58), (-0.45, -0.25), (0.45, -0.25)]
     for i, (fx, fy) in enumerate(feet):
-        P.append(leg('leg%d' % i, 'ceb1_black', (0, 0, 0.10), (fx, fy, 0.03), 0.025))
+        P.append(leg('leg%d' % i, 'ceb1_black', (0, 0, 0.10 + L), (fx, fy, 0.03), 0.025))
         P.append(cyl('foot%d' % i, 'ceb1_kpv_feet', (fx, fy, 0.0), (fx, fy, 0.03), 0.045, 12))
     return P
 
@@ -255,24 +270,27 @@ def kpv_gun():
     for s in (1, -1):
         P.append(cyl('knob%d' % s, 'ceb1_kpv_wood', (-0.645, 0.075 * s, 0.57), (-0.645, 0.075 * s, 0.69), 0.03, 12))
     P.append(box('ammo', 'ceb1_kpv_ammo', -0.21, -0.05, -0.33, -0.11, 0.50, 0.64))
-    P.append(cyl('jacket', 'ceb1_kpv_jacket', (0.165, 0, KPV_BORE), (0.50, 0, KPV_BORE), 0.07, 16, r1=0.05))
-    P.append(cyl('barrel', 'ceb1_kpv_cradle', (0.49, 0, KPV_BORE), (0.75, 0, KPV_BORE), 0.03, 12))
-    P.append(cyl('muzzle', 'ceb1_kpv_muzzle', (0.75, 0, KPV_BORE), (0.97, 0, KPV_BORE), 0.0375, 12))
-    return P
+    P.append(cyl('jacket', 'ceb1_kpv_jacket', (0.165, 0, KPV_BORE0), (0.50, 0, KPV_BORE0), 0.07, 16, r1=0.05))
+    P.append(cyl('barrel', 'ceb1_kpv_cradle', (0.49, 0, KPV_BORE0), (0.75, 0, KPV_BORE0), 0.03, 12))
+    P.append(cyl('muzzle', 'ceb1_kpv_muzzle', (0.75, 0, KPV_BORE0), (0.97, 0, KPV_BORE0), 0.0375, 12))
+    return up(P, KPV_LIFT)
 
 
 # ---------------------------------------------------------------- AGS-30
-AGS_BORE = 0.40
-DRUM_Z = 0.38   # drum centre height (v2): lowest that keeps 0.01 to the tripod legs at every aim
+AGS_BORE0 = 0.40
+AGS_LIFT = 0.52
+AGS_BORE = AGS_BORE0 + AGS_LIFT
+DRUM_Z = 0.38   # drum centre height (v2, before the M19 lift): lowest that keeps 0.01 to the tripod legs at every aim
 
 
 def ags_base():
     P = []
-    P.append(cyl('head', 'ceb1_ags_olive', (0, 0, 0.24), (0, 0, 0.31), 0.09))
-    P.append(cyl('post', 'ceb1_ags_olive', (0, 0, 0.31), (0, 0, 0.32), 0.03, 12))
+    L = AGS_LIFT
+    P.append(cyl('head', 'ceb1_ags_olive', (0, 0, 0.24 + L), (0, 0, 0.31 + L), 0.09))
+    P.append(cyl('post', 'ceb1_ags_olive', (0, 0, 0.31 + L), (0, 0, 0.32 + L), 0.03, 12))
     feet = [(0.0, 0.52), (-0.36, -0.41), (0.36, -0.41)]
     for i, (fx, fy) in enumerate(feet):
-        P.append(leg('leg%d' % i, 'ceb1_ags_leg', (0, 0, 0.275), (fx, fy, 0.02), 0.025))
+        P.append(leg('leg%d' % i, 'ceb1_ags_leg', (0, 0, 0.275 + L), (fx, fy, 0.02), 0.025))
         P.append(cyl('foot%d' % i, 'ceb1_ags_olive', (fx, fy, 0.0), (fx, fy, 0.02), 0.04, 12))
     return P
 
@@ -284,13 +302,13 @@ def ags_gun():
     a = [(0.25, -0.095, 0.33), (0.25, 0.095, 0.33), (0.25, 0.095, 0.48), (0.25, -0.095, 0.48)]
     b = [(0.37, -0.05, 0.36), (0.37, 0.05, 0.36), (0.37, 0.05, 0.44), (0.37, -0.05, 0.44)]
     P.append(hull8('taper', 'ceb1_ags_front', a, b))
-    P.append(cyl('barrel', 'ceb1_ags_barrel', (0.36, 0, AGS_BORE), (0.66, 0, AGS_BORE), 0.03, 12))
+    P.append(cyl('barrel', 'ceb1_ags_barrel', (0.36, 0, AGS_BORE0), (0.66, 0, AGS_BORE0), 0.03, 12))
     for s in (1, -1):
         P.append(cyl('handle%d' % s, 'ceb1_ags_handle', (-0.22, 0.09 * s, 0.42), (-0.22, 0.245 * s, 0.42), 0.03, 12))
     P.append(cyl('sight', 'ceb1_ags_sight', (-0.175, 0.124, 0.46), (-0.01, 0.124, 0.46), 0.03, 12))
     # drum magazine on the right (v2): a flat disc, axis sideways, d0.28, 0.11 thick, flat faces
     P.append(cyl('drum', 'ceb1_ags_drum', (0.16, -0.095, DRUM_Z), (0.16, -0.205, DRUM_Z), 0.14, 20))
-    return P
+    return up(P, AGS_LIFT)
 
 
 # ---------------------------------------------------------------- Flak (3x3)
