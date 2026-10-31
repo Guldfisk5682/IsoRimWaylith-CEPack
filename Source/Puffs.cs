@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using CombatExtended;
 using HarmonyLib;
 using RimWorld;
@@ -18,6 +19,11 @@ namespace IsoRimCEPack
     //  - Its own muzzle flash (Verb_ShootCE: FleckMakerCE.Static(caster cell, ShotFlash, ...) when a gun without a magazine
     //    runs out of ammo; the game's per-shot flash is IsoRim's, at the muzzle already): put at the shooter's muzzle
     //    (Api.Muzzle) instead of its middle on the ground.
+    //  - An ammo stack's cook-off flash (AmmoThing.TryLaunchCookOffProjectile: FleckMakerCE.Static(its cell, ShotFlash,
+    //    cookOffFlashScale)): flat on the ground it lay under the stack's 3D model, faint and hidden; put just above the
+    //    stack instead, standing up as a shot's flash does. With the setting "Cook-off sparks" (default on) each round also
+    //    throws a few of the game's own flecks there (CookOffExtras): a short spray of sparks, a brighter flash and a small
+    //    puff of smoke; with the view off they are the game's flat flecks.
     // IsoRim has no public way to stand a fleck up in the air, so these few are drawn here, from the fleck's own def as the
     // game draws it (its texture, colour, fade in / solid / fade out, growth, turn and drift, the size and turn CE gave it),
     // as a card facing the camera at that point (IsoRim stands its own puffs and flashes the same way). On stacked floors a
@@ -26,7 +32,8 @@ namespace IsoRimCEPack
     public static class Puffs
     {
         public static bool Enabled = true;
-        public static int Trails, Flashes, Drawn;
+        public static int Trails, Flashes, CookOffs, Drawn;
+        private const float CookOffHeight = 0.3f;   // cells over the ground: just above an ammo stack's model
         private const int Max = 4000;
 
         private struct Puff
@@ -102,6 +109,26 @@ namespace IsoRimCEPack
                 fleckData.instanceColor = Unseen;
                 return;
             }
+            Thing ammo = cooking;
+            if (ammo != null && (extra || fleckData.def == FleckDefOf.ShotFlash))
+            {
+                if (!extra)
+                {
+                    cooking = null;   // (CE's one flash; the extras come after it, CookOffExtras)
+                }
+                if (Enabled && IsoRim.Api.ViewReady && ammo.Spawned && ammo.Map != null)
+                {
+                    IntVec3 c = ammo.Position;
+                    Vector3 over = extra ? new Vector3(fleckData.spawnPosition.x, extraHeight, fleckData.spawnPosition.z) : new Vector3(c.x + 0.5f, CookOffHeight, c.z + 0.5f);
+                    Add(ammo.Map, fleckData, over);
+                    if (!extra)
+                    {
+                        CookOffs++;
+                    }
+                    fleckData.instanceColor = Unseen;
+                }
+                return;
+            }
             ProjectileCE p = emitting;
             if (p == null)
             {
@@ -164,6 +191,101 @@ namespace IsoRimCEPack
         }
 
         public static void FleckStatic_Finalizer() => flashing = null;
+
+        // ---- an ammo stack cooking off (AmmoThing.TryLaunchCookOffProjectile): its ShotFlash goes above the stack
+        [ThreadStatic] private static Thing cooking;
+
+        public static void CookOff_Prefix(Thing __instance) => cooking = __instance;
+
+        public static void CookOff_Finalizer() => cooking = null;
+
+        private const int CookOffQuiet = 15;   // ticks: a stack's full burst at most this often; rounds between: a spark or two
+        private static readonly Dictionary<int, int> lastBurst = new Dictionary<int, int>();
+        [ThreadStatic] private static bool extra;
+        [ThreadStatic] private static float extraHeight;
+        public static int Extras;
+
+        // After a round cooked off (CE's flash made, the method answered true): the setting's extra flecks over the stack,
+        // made with the game's fleck drawing (stood up by CreateFleck_Prefix while the view is on, the game's flat flecks
+        // with it off). Their random numbers come from a seed of their own (the stack and the tick): the game's are untouched.
+        public static void CookOffExtras(Thing ammo, bool launched)
+        {
+            CEPackSettings st = CEPackMod.Settings;
+            if (!launched || !Enabled || st == null || !st.cookOffSparks || ammo == null || !ammo.Spawned || ammo.Map == null)
+            {
+                return;
+            }
+            Map map = ammo.Map;
+            Vector3 mid = ammo.Position.ToVector3Shifted();
+            int now = Find.TickManager.TicksGame;
+            bool full = !lastBurst.TryGetValue(ammo.thingIDNumber, out int last) || now - last >= CookOffQuiet || now < last;
+            if (full)
+            {
+                if (lastBurst.Count > 256)
+                {
+                    lastBurst.Clear();
+                }
+                lastBurst[ammo.thingIDNumber] = now;
+            }
+            cooking = ammo;
+            Rand.PushState(Gen.HashCombineInt(ammo.thingIDNumber, Find.TickManager.TicksGame));
+            try
+            {
+                // a brighter flash than CE's, a short spray of sparks, now and then a small puff of smoke; a stack cooking off
+                // fast (many rounds a second) shows that burst at most every CookOffQuiet ticks, a spark or two in between
+                if (full)
+                {
+                    Make(map, FleckDefOf.ExplosionFlash, mid, CookOffHeight + 0.05f, Rand.Range(2.2f, 2.6f), 0f, 0f, 0f, null);
+                }
+                int sparks = full ? Rand.RangeInclusive(4, 6) : Rand.RangeInclusive(0, 1);
+                for (int i = 0; i < sparks; i++)
+                {
+                    Vector3 off = new Vector3(Rand.Range(-0.15f, 0.15f), 0f, Rand.Range(-0.15f, 0.15f));
+                    Make(map, FleckDefOf.MicroSparksFast, mid + off, CookOffHeight + Rand.Range(0.05f, 0.35f), Rand.Range(0.9f, 1.3f),
+                        Rand.Range(0f, 360f), Rand.Range(1.0f, 2.0f), Rand.Range(-180f, 180f), null);
+                }
+                if (full && Rand.Chance(0.5f))
+                {
+                    Make(map, FleckDefOf.Smoke, mid, CookOffHeight + 0.25f, Rand.Range(0.8f, 1.1f), Rand.Range(0f, 360f), Rand.Range(0.1f, 0.3f),
+                        Rand.Range(-30f, 30f), 0.6f);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.ErrorOnce(Pack.Tag + "Cook-off sparks failed (left out): " + e, 74120341);
+            }
+            finally
+            {
+                Rand.PopState();
+                extra = false;
+                cooking = null;
+            }
+        }
+
+        private static void Make(Map map, FleckDef def, Vector3 at, float height, float scale, float angle, float speed, float spin, float? solid)
+        {
+            if (def == null)
+            {
+                return;
+            }
+            FleckCreationData data = FleckMaker.GetDataStatic(at, map, def, scale);
+            data.rotation = Rand.Range(0f, 360f);
+            data.rotationRate = spin;
+            data.velocityAngle = angle;
+            data.velocitySpeed = speed;
+            data.solidTimeOverride = solid;
+            extra = true;
+            extraHeight = height;
+            try
+            {
+                map.flecks.CreateFleck(data);
+            }
+            finally
+            {
+                extra = false;
+            }
+            Extras++;
+        }
 
         private static void Add(Map map, FleckCreationData data, Vector3 at)
         {
@@ -313,6 +435,36 @@ namespace IsoRimCEPack
         public static Exception Finalizer(Exception __exception)
         {
             Puffs.FleckStatic_Finalizer();
+            return __exception;
+        }
+    }
+
+    // CE: AmmoThing.TryLaunchCookOffProjectile (private): the flash of a cooking-off ammo stack (Puffs). Not found (a CE
+    // update renamed it): the flash stays as CE makes it, nothing else changes.
+    [HarmonyPatch]
+    public static class AmmoThing_CookOff
+    {
+        private static MethodBase target;
+
+        public static bool Prepare()
+        {
+            target ??= AccessTools.Method(typeof(AmmoThing), Pack.FaultName("TryLaunchCookOffProjectile"));
+            if (target == null)
+            {
+                Log.Warning(Pack.Tag + "CE's ammo cook-off (AmmoThing.TryLaunchCookOffProjectile) not found: its flash stays flat on the ground.");
+            }
+            return target != null;
+        }
+
+        public static MethodBase TargetMethod() => target;
+
+        public static void Prefix(Thing __instance) => Puffs.CookOff_Prefix(__instance);
+
+        public static void Postfix(Thing __instance, bool __result) => Puffs.CookOffExtras(__instance, __result);
+
+        public static Exception Finalizer(Exception __exception)
+        {
+            Puffs.CookOff_Finalizer();
             return __exception;
         }
     }

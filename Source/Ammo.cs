@@ -25,8 +25,11 @@ namespace IsoRimCEPack
     // patch still gives things drawn with a generic CE texture that texture's look.
     public class CEPackMod : Mod
     {
+        public static CEPackSettings Settings;
+
         public CEPackMod(ModContentPack content) : base(content)
         {
+            Settings = GetSettings<CEPackSettings>();
             int v;
             try
             {
@@ -48,6 +51,27 @@ namespace IsoRimCEPack
             {
                 Log.Error(Pack.Tag + "Ammo model rule not added (CE ammo keeps its texture-path models): " + e);
             }
+        }
+
+        public override string SettingsCategory() => Content.Name;
+
+        public override void DoSettingsWindowContents(UnityEngine.Rect inRect)
+        {
+            Listing_Standard list = new Listing_Standard();
+            list.Begin(inRect);
+            list.CheckboxLabeled("CEPack_CookOffSparks".Translate(), ref Settings.cookOffSparks, "CEPack_CookOffSparksTip".Translate());
+            list.End();
+        }
+    }
+
+    // The pack's settings. Scribe keys are never renamed or removed (a retired one is hidden, not deleted).
+    public class CEPackSettings : ModSettings
+    {
+        public bool cookOffSparks = true;   // sparks, a flash and a puff of smoke over ammo that cooks off (Puffs)
+
+        public override void ExposeData()
+        {
+            Scribe_Values.Look(ref cookOffSparks, "cookOffSparks", true);
         }
     }
 

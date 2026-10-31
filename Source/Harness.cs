@@ -42,6 +42,7 @@ namespace IsoRimCEPack
             h.Patch(AccessTools.Method(typeof(FleckManager), nameof(FleckManager.CreateFleck), new[] { typeof(FleckCreationData) }),
                 prefix: new HarmonyMethod(typeof(Harness), nameof(Fleck_Prefix)) { priority = Priority.First });
             h.Patch(AccessTools.Method(typeof(Mote), nameof(Mote.SpawnSetup)), postfix: new HarmonyMethod(typeof(Harness), nameof(Mote_Postfix)));
+            h.Patch(AccessTools.Method(typeof(Game), nameof(Game.UpdatePlay)), postfix: new HarmonyMethod(typeof(Harness), nameof(Watch_Postfix)));
             Log.Message(Pack.Tag + "harness on");
         }
 
@@ -62,6 +63,37 @@ namespace IsoRimCEPack
             {
                 Log.Message(Pack.Tag + "fx mote " + __instance.def.defName + " at " + __instance.exactPosition.ToString("F2") + " tick " + Find.TickManager.TicksGame);
             }
+        }
+
+        // (cefixdisplay probe) frames left to log the live shot flashes after a cookoff
+        private static int watch;
+
+        public static void Watch_Postfix()
+        {
+            if (watch <= 0 || Find.CurrentMap == null)
+            {
+                return;
+            }
+            watch--;
+            if (watch % 20 != 0)
+            {
+                return;
+            }
+            int n = 0;
+            string ages = "";
+            foreach (FleckSystem fs in Find.CurrentMap.flecks.Systems)
+            {
+                System.Collections.IList live = Traverse.Create(fs).Field("dataGametime").GetValue() as System.Collections.IList;
+                for (int i = 0; live != null && i < live.Count; i++)
+                {
+                    if (live[i] is FleckStatic fl && fl.def == FleckDefOf.ShotFlash)
+                    {
+                        n++;
+                        ages += fl.ageSecs.ToString("0.000") + "@" + fl.DrawPos.ToString("F1") + " ";
+                    }
+                }
+            }
+            Log.Message(Pack.Tag + "probe watch frame " + Time.frameCount + " tick " + Find.TickManager.TicksGame + " speed " + Find.TickManager.CurTimeSpeed + ": live shot flashes " + n + " " + ages);
         }
 
         private const string Key = "[IsoRim probe] unknown key cepack:";
@@ -164,11 +196,86 @@ namespace IsoRimCEPack
             return int.Parse(s.Substring(1)) + shift;
         }
 
+        // cepack:gunclass (cefixdisplay probe): every equippable weapon and turret (all mods) with how IsoRim binds a model to it
+        // and which look each IsoRim path gives it -> <save data>/CEPackGunClass.tsv.
+        private static void GunClass()
+        {
+            Type lib = AccessTools.TypeByName("IsoRim.ModelLibrary");
+            System.Reflection.MethodInfo howM = AccessTools.Method(lib, "HowBound", new[] { typeof(ThingDef) });
+            System.Reflection.MethodInfo getM = AccessTools.Method(lib, "TryGet");
+            System.Reflection.MethodInfo usesM = AccessTools.Method(AccessTools.TypeByName("IsoRim.WeaponModels"), "Uses", new[] { typeof(ThingDef) });
+            System.Reflection.MethodInfo isGear = AccessTools.Method(AccessTools.TypeByName("IsoRim.GroundGear"), "IsGear");
+            System.Reflection.MethodInfo formsFor = AccessTools.Method(AccessTools.TypeByName("IsoRim.Forms"), "For");
+            System.Reflection.MethodInfo solidFor = AccessTools.Method(AccessTools.TypeByName("IsoRim.SpriteSolids"), "For");
+            System.Text.StringBuilder sb = new System.Text.StringBuilder("defName\tpack\tkind\ttexPath\tgraphicClass\tcategories\tisGear\thow\tentry\tentryFile\thasModel\tuses\tgroundForm\tsolidOk\tturretTop\n");
+            foreach (ThingDef d in DefDatabase<ThingDef>.AllDefs.OrderBy(x => x.defName))
+            {
+                bool weapon = d.equipmentType == EquipmentType.Primary && d.category == ThingCategory.Item;
+                bool turret = d.building?.turretGunDef != null;
+                if (!weapon && !turret)
+                {
+                    continue;
+                }
+                string how = howM.Invoke(null, new object[] { d }) as string;
+                string entry = "", file = "", top = "";
+                bool has = false;
+                object[] args = { d, null };
+                if ((bool)getM.Invoke(null, args) && args[1] != null)
+                {
+                    object md = AccessTools.Field(args[1].GetType(), "def")?.GetValue(args[1]);
+                    entry = (md as Def)?.defName ?? "";
+                    file = md != null ? (AccessTools.Field(md.GetType(), "model")?.GetValue(md) as string ?? "") : "";
+                    has = (bool)AccessTools.Property(args[1].GetType(), "HasModel").GetValue(args[1]);
+                    top = AccessTools.Field(args[1].GetType(), "top")?.GetValue(args[1]) != null ? "top" : "";
+                }
+                string form;
+                try
+                {
+                    object f = formsFor.Invoke(null, new object[] { d });
+                    form = AccessTools.Field(f.GetType(), "form").GetValue(f).ToString();
+                }
+                catch (Exception e)
+                {
+                    form = "err " + (e.InnerException ?? e).GetType().Name;
+                }
+                string solid = "";
+                if (weapon)
+                {
+                    try
+                    {
+                        Material mat = d.graphic?.MatSingle;
+                        solid = mat == null ? "nomat" : solidFor.Invoke(null, new object[] { mat }) != null ? "1" : "0";
+                    }
+                    catch (Exception e)
+                    {
+                        solid = "err " + (e.InnerException ?? e).GetType().Name;
+                    }
+                }
+                sb.Append(d.defName).Append('\t').Append(d.modContentPack?.PackageId ?? "").Append('\t').Append(turret ? "turret:" + d.building.turretGunDef.defName : "weapon")
+                    .Append('\t').Append(d.graphicData?.texPath ?? "").Append('\t').Append(d.graphicData?.graphicClass?.Name ?? "")
+                    .Append('\t').Append(d.thingCategories != null ? string.Join(",", d.thingCategories.Select(c => c.defName)) : "")
+                    .Append('\t').Append(weapon ? ((bool)isGear.Invoke(null, new object[] { d }) ? "1" : "0") : "")
+                    .Append('\t').Append(how ?? "").Append('\t').Append(entry).Append('\t').Append(file).Append('\t').Append(has ? 1 : 0)
+                    .Append('\t').Append(weapon ? ((bool)usesM.Invoke(null, new object[] { d }) ? "1" : "0") : "")
+                    .Append('\t').Append(form).Append('\t').Append(solid).Append('\t').Append(top).Append('\n');
+            }
+            System.IO.File.WriteAllText(System.IO.Path.Combine(GenFilePaths.SaveDataFolderPath, "CEPackGunClass.tsv"), sb.ToString());
+            Log.Message(Pack.Tag + "probe gunclass written");
+        }
+
         private static void Run(string[] a)
         {
             Map map = Find.CurrentMap;
             switch (a[0])
             {
+                case "sparks":
+                    // sparks:on|off (cefixdisplay probe): the setting "Cook-off sparks" for this session (not saved)
+                    CEPackMod.Settings.cookOffSparks = a[1] == "on";
+                    Log.Message(Pack.Tag + "probe cook-off sparks " + a[1] + " (extras so far " + Puffs.Extras + ", cook-off flashes " + Puffs.CookOffs + ")");
+                    break;
+                case "gunclass":
+                    GunClass();
+                    break;
                 case "off":
                 case "on":
                     ProjectileCE_DrawAt.Enabled = a[0] == "on";
@@ -193,7 +300,7 @@ namespace IsoRimCEPack
                 case "dispstats":
                     Log.Message(Pack.Tag + "probe display stats: held guns drawn " + HeldGuns.Drawn + " (left to CE " + HeldGuns.LeftToCe + "), beam strips " + Beams.Strips + " bolts " + Beams.Bolts
                         + " from muzzle " + Beams.FromMuzzle + " swept " + Beams.Swept + " hidden " + Beams.Hidden + ", last strip " + Beams.LastStart.ToString("F2") + " -> " + Beams.LastEnd.ToString("F2")
-                        + ", trail flecks " + Puffs.Trails + " flashes " + Puffs.Flashes + " live " + Puffs.Live + " draws " + Puffs.Drawn + ", grenade models " + Grenades.Drawn + ", bullet holes " + Holes.Made + " live " + Holes.Live + " draws " + Holes.Drawn);
+                        + ", trail flecks " + Puffs.Trails + " flashes " + Puffs.Flashes + " cook-offs " + Puffs.CookOffs + " live " + Puffs.Live + " draws " + Puffs.Drawn + ", grenade models " + Grenades.Drawn + ", bullet holes " + Holes.Made + " live " + Holes.Live + " draws " + Holes.Drawn);
                     break;
                 case "tickbeam":
                 {
@@ -335,6 +442,33 @@ namespace IsoRimCEPack
                     Log.Message(Pack.Tag + "CHECK " + (pass ? "PASS" : "FAIL") + " muzzle owners " + label + ": " + shots.Count + " gun shots seen over " + n + " ticks (" + checks
                         + " shot-ticks: " + string.Join(", ", byLauncher.Select(kv => kv.Key + " " + kv.Value)) + "), shots without owner " + bad.Count + " (" + missing + " shot-ticks); shooter gone (not checked) " + gone.Count + "; drawn so far "
                         + ProjectileCE_DrawAt.GunShots + " without owner " + ProjectileCE_DrawAt.GunShotsNoOwner);
+                    break;
+                }
+                case "cookoff":
+                {
+                    // cookoff:x:z:damage:max[:seed] (cefixdisplay probe): the CE ammo stack in the cell takes a bullet's damage
+                    // (seeded), then real game ticks one at a time until it cooks off once (its stack drops), at most max ticks.
+                    IntVec3 c = new IntVec3(I(a[1]), 0, Z(map, a[2]));
+                    AmmoThing ammo = c.GetThingList(map).OfType<AmmoThing>().FirstOrDefault();
+                    if (ammo == null)
+                    {
+                        Log.Warning(Pack.Tag + "probe cookoff: no ammo at " + c);
+                        break;
+                    }
+                    Rand.Seed = a.Length > 5 ? I(a[5]) : 4242;
+                    watch = 400;
+                    int before = ammo.stackCount, max = I(a[4]), done = 0;
+                    ammo.TakeDamage(new DamageInfo(DamageDefOf.Bullet, float.Parse(a[3], System.Globalization.CultureInfo.InvariantCulture)));
+                    int after = ammo.Spawned ? ammo.stackCount : 0;
+                    while (done < max && ammo.Spawned && ammo.stackCount >= after)
+                    {
+                        Find.TickManager.DoSingleTick();
+                        done++;
+                    }
+                    Log.Message(Pack.Tag + "probe cookoff " + ammo.def.defName + " at " + c + ": stack " + before + " -> " + after + " after the hit -> "
+                        + (ammo.Spawned ? ammo.stackCount.ToString() : "gone") + " after " + done + " ticks; cooking off " + ammo.IsCookingOff
+                        + ", HP " + ammo.HitPoints + "/" + ammo.MaxHitPoints + ", projectiles in flight " + map.listerThings.AllThings.OfType<ProjectileCE>().Count()
+                        + ", realistic cook-off " + Controller.settings.RealisticCookOff + ", frame " + Time.frameCount + ", flash scale " + ((ammo.def as AmmoDef)?.cookOffFlashScale ?? 0f));
                     break;
                 }
                 case "tickfly":
