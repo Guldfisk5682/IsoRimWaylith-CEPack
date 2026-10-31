@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack: 3D models for CE's worn apparel on IsoRim's figures (IsoRim Api 9,
+     IsoRim.ApparelModelDef; models from tools/make_ce_gear.py, approved v1 2026-10-30). The shields are added by
+     Patches/CE_Gear_Shields.xml only with IsoRim Api 43 (shown = Weapon: visible while drafted, as CE draws them). -->
+<Defs>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_TacVest</defName>
+    <apparel>CE_Apparel_TacVest</apparel>
+    <slot>Body</slot>
+    <model>Models/ce_gear_tacvest_male.obj</model>
+    <bodyModels>
+      <female>Models/ce_gear_tacvest_female.obj</female>
+      <thin>Models/ce_gear_tacvest_thin.obj</thin>
+      <fat>Models/ce_gear_tacvest_fat.obj</fat>
+      <hulk>Models/ce_gear_tacvest_hulk.obj</hulk>
+    </bodyModels>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_CompositeVest</defName>
+    <apparel>CE_Apparel_CompositeVest</apparel>
+    <slot>Body</slot>
+    <model>Models/ce_gear_compositevest_male.obj</model>
+    <bodyModels>
+      <female>Models/ce_gear_compositevest_female.obj</female>
+      <thin>Models/ce_gear_compositevest_thin.obj</thin>
+      <fat>Models/ce_gear_compositevest_fat.obj</fat>
+      <hulk>Models/ce_gear_compositevest_hulk.obj</hulk>
+    </bodyModels>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_ExoFrame</defName>
+    <apparel>CE_Apparel_ExoFrame</apparel>
+    <slot>Body</slot>
+    <model>Models/ce_gear_exoframe_male.obj</model>
+    <bodyModels>
+      <female>Models/ce_gear_exoframe_female.obj</female>
+      <thin>Models/ce_gear_exoframe_thin.obj</thin>
+      <fat>Models/ce_gear_exoframe_fat.obj</fat>
+      <hulk>Models/ce_gear_exoframe_hulk.obj</hulk>
+    </bodyModels>
+    <under>Whole</under>   <!-- an open frame: a vest or shirt shape under it still shows -->
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_Backpack</defName>
+    <apparel>CE_Apparel_Backpack</apparel>
+    <slot>Belt</slot>
+    <model>Models/ce_gear_backpack.obj</model>
+    <mount>pack</mount>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_KidBackpack</defName>
+    <apparel>CE_Apparel_KidBackpack</apparel>
+    <slot>Belt</slot>
+    <model>Models/ce_gear_backpack.obj</model>
+    <mount>pack</mount>   <!-- the same pack; the child figure is smaller -->
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_TribalBackpack</defName>
+    <apparel>CE_Apparel_TribalBackpack</apparel>
+    <slot>Belt</slot>
+    <model>Models/ce_gear_tribalpack.obj</model>
+    <mount>pack</mount>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_RadioPack</defName>
+    <apparel>CE_Apparel_RadioPack</apparel>
+    <slot>Belt</slot>
+    <model>Models/ce_gear_radiopack.obj</model>
+    <mount>pack</mount>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_PlateHelmet</defName>
+    <apparel>CE_Apparel_PlateHelmet</apparel>
+    <slot>Head</slot>
+    <model>Models/ce_gear_platehelmet.obj</model>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_GasMask</defName>
+    <apparel>CE_Apparel_GasMask</apparel>
+    <slot>Face</slot>
+    <model>Models/ce_gear_gasmask.obj</model>
+    <hides>
+      <li>Beard</li>
+    </hides>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_ImprovGasMask</defName>
+    <apparel>CE_Apparel_ImprovGasMask</apparel>
+    <slot>Face</slot>
+    <model>Models/ce_gear_improvgasmask.obj</model>
+    <hides>
+      <li>Beard</li>
+    </hides>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_SimpleNightVision</defName>
+    <apparel>CE_Apparel_SimpleNightVision</apparel>
+    <slot>Eyes</slot>
+    <model>Models/ce_gear_nv_simple.obj</model>
+  </IsoRim.ApparelModelDef>
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_AdvancedNightVision</defName>
+    <apparel>CE_Apparel_AdvancedNightVision</apparel>
+    <slot>Eyes</slot>
+    <model>Models/ce_gear_nv_advanced.obj</model>
+  </IsoRim.ApparelModelDef>
+
+  <!-- Vanilla Apparel_Bandolier (Biotech): CE moves it to its Webbing layer, so IsoRim's own bandolier shape no longer
+       applies; copies of IsoRim's models. Skipped quietly without Biotech (IsoRim skips bindings of unloaded apparel). -->
+  <IsoRim.ApparelModelDef>
+    <defName>R3D_CE_VanillaBandolier</defName>
+    <apparel>Apparel_Bandolier</apparel>
+    <slot>Body</slot>
+    <model>Models/ce_gear_bandolier_male.obj</model>
+    <bodyModels>
+      <female>Models/ce_gear_bandolier_female.obj</female>
+      <thin>Models/ce_gear_bandolier_thin.obj</thin>
+      <fat>Models/ce_gear_bandolier_fat.obj</fat>
+      <hulk>Models/ce_gear_bandolier_hulk.obj</hulk>
+    </bodyModels>
+  </IsoRim.ApparelModelDef>
+</Defs>

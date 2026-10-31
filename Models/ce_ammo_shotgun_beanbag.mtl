@@ -1,0 +1,13 @@
+# IsoRim Waylith - CE Pack: ammo colours for shotgun / beanbag, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_hull
+Kd 0.949 0.949 0.949
+newmtl ceammo_head
+Kd 0.779 0.779 0.779
+newmtl ceammo_mark
+Kd 0.983 0.068 0.102
+newmtl ceammo_card
+Kd 0.881 0.881 0.881
+newmtl ceammo_box
+Kd 0.847 0.847 0.847
+newmtl ceammo_boxDark
+Kd 0.440 0.440 0.440

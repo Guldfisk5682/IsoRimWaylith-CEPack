@@ -1,0 +1,15 @@
+# IsoRim Waylith - CE Pack: ammo colours for chshotgun / conc, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_hull
+Kd 0.949 0.136 0.000
+newmtl ceammo_head
+Kd 0.508 0.508 0.474
+newmtl ceammo_mark
+Kd 1.000 1.000 1.000
+newmtl ceammo_card
+Kd 0.542 0.068 0.000
+newmtl ceammo_case2
+Kd 0.915 0.915 0.847
+newmtl ceammo_case2Dark
+Kd 0.745 0.745 0.678
+newmtl ceammo_band
+Kd 0.949 0.136 0.000

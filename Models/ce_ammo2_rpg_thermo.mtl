@@ -1,0 +1,15 @@
+# IsoRim Waylith - CE Pack: ammo colours for rpg / thermo, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_warhead
+Kd 0.644 0.678 0.407
+newmtl ceammo_body
+Kd 0.508 0.542 0.305
+newmtl ceammo_band
+Kd 0.542 0.169 0.339
+newmtl ceammo_mark
+Kd 0.644 0.678 0.407
+newmtl ceammo_crate
+Kd 0.542 0.136 0.339
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_crateDark
+Kd 0.407 0.068 0.271
+map_Kd IsoRim/Swatches/Metal

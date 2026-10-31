@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack, model batch 2: CE's auto-turrets (models from tools/make_ce_b2.py, approved
+     2026-10-30). As IsoRim's own turrets (R3D_Turret_*): <model> = the base (CE's MachineGunBase, shared by all three:
+     IsoRim's mini-turret base re-aimed to CE's art; the auto-turrets are not rotatable); <topModel> = the gun, barrel
+     along +x from its yaw pivot, drawn at topHeight (= the bore) and turned to the turret's aim. IsoRim takes the muzzle
+     (shots, flashes) from the gun model's barrel end. Fixed colours from CE's art (Models/ce_b2.mtl). CIWS_Blaster is
+     commented out in CE and gets no entry. -->
+<Defs>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_Medium</defName>
+    <thingDef>Turret_Medium</thingDef>
+    <model>Models/ce_mgbase.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_medium_gun.obj</topModel>
+    <topHeight>0.54</topHeight>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_Heavy</defName>
+    <thingDef>Turret_Heavy</thingDef>
+    <model>Models/ce_mgbase.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_heavy_gun.obj</topModel>
+    <topHeight>0.55</topHeight>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_Blaster</defName>
+    <thingDef>Turret_Blaster</thingDef>
+    <model>Models/ce_mgbase.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_blaster_gun.obj</topModel>
+    <topHeight>0.54</topHeight>
+  </IsoRim.ModelDef>
+</Defs>

@@ -1,0 +1,17 @@
+# IsoRim Waylith - CE Pack: ammo colours for minirocket / hec, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_body
+Kd 0.474 0.474 0.474
+newmtl ceammo_nose
+Kd 0.373 0.373 0.373
+newmtl ceammo_band
+Kd 0.203 0.203 0.203
+newmtl ceammo_collar
+Kd 0.813 0.407 0.339
+newmtl ceammo_fin
+Kd 0.644 0.644 0.644
+newmtl ceammo_case
+Kd 0.542 0.542 0.542
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_caseDark
+Kd 0.339 0.339 0.339
+map_Kd IsoRim/Swatches/Metal

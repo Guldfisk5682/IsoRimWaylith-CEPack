@@ -1,0 +1,69 @@
+# IsoRim Waylith - Combat Extended Pack, model batch 2: CE's auto-turrets. Fixed colours sampled from CE's
+# textures (lifted ~1.1x for the 3D shading, as batch 1); metal parts carry IsoRim's Metal swatch.
+newmtl ceb2_leg
+Kd 0.328 0.328 0.328
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_foot
+Kd 0.311 0.311 0.311
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hub
+Kd 0.160 0.160 0.160
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_rim
+Kd 0.302 0.302 0.302
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_med_body
+Kd 0.505 0.405 0.289
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_med_hump
+Kd 0.483 0.423 0.328
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_med_sleeve
+Kd 0.427 0.345 0.255
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_med_grey
+Kd 0.349 0.349 0.349
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_med_cover
+Kd 0.306 0.306 0.306
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_side
+Kd 0.427 0.345 0.276
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_top
+Kd 0.561 0.462 0.354
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_rear
+Kd 0.470 0.380 0.298
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_sleeve
+Kd 0.513 0.423 0.332
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_plate
+Kd 0.371 0.371 0.371
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_collar
+Kd 0.492 0.492 0.492
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_hvy_barrel
+Kd 0.328 0.328 0.328
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_bl_shell
+Kd 0.548 0.548 0.548
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_bl_olive
+Kd 0.479 0.556 0.298
+newmtl ceb2_bl_band
+Kd 0.393 0.393 0.393
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_bl_dark
+Kd 0.173 0.173 0.173
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_bl_housing
+Kd 0.250 0.250 0.250
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb2_bl_vent
+Kd 0.060 0.060 0.060
+newmtl ceb2_bl_tip
+Kd 0.349 0.349 0.349
+map_Kd IsoRim/Swatches/Metal

@@ -1,0 +1,923 @@
+{
+ "ce_gear_tacvest_male": {
+  "tris": 684,
+  "parts": 17,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.225,
+    0.225
+   ],
+   [
+    0.245,
+    0.735
+   ],
+   [
+    -0.229,
+    0.223
+   ]
+  ],
+  "materials": {
+   "ceg_strap": 424,
+   "stuff_ceg_light": 160,
+   "stuff_ceg_mid": 100
+  },
+  "head_clearance": 0.0477,
+  "closest_point": [
+   0.173,
+   0.735,
+   -0.044
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.223,
+  "waist_half": [
+   0.221,
+   0.213
+  ]
+ },
+ "ce_gear_tacvest_female": {
+  "tris": 684,
+  "parts": 17,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.226,
+    0.226
+   ],
+   [
+    0.245,
+    0.725
+   ],
+   [
+    -0.213,
+    0.207
+   ]
+  ],
+  "materials": {
+   "ceg_strap": 424,
+   "stuff_ceg_light": 160,
+   "stuff_ceg_mid": 100
+  },
+  "head_clearance": 0.0663,
+  "closest_point": [
+   0.192,
+   0.725,
+   -0.041
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.204,
+  "waist_half": [
+   0.21,
+   0.213
+  ]
+ },
+ "ce_gear_tacvest_thin": {
+  "tris": 684,
+  "parts": 17,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.236,
+    0.236
+   ],
+   [
+    0.245,
+    0.698
+   ],
+   [
+    -0.207,
+    0.201
+   ]
+  ],
+  "materials": {
+   "ceg_strap": 424,
+   "stuff_ceg_light": 160,
+   "stuff_ceg_mid": 100
+  },
+  "head_clearance": 0.0796,
+  "closest_point": [
+   0.175,
+   0.698,
+   -0.047
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.201,
+  "waist_half": [
+   0.185,
+   0.194
+  ]
+ },
+ "ce_gear_tacvest_fat": {
+  "tris": 724,
+  "parts": 17,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.298,
+    0.298
+   ],
+   [
+    0.245,
+    0.725
+   ],
+   [
+    -0.3,
+    0.294
+   ]
+  ],
+  "materials": {
+   "ceg_strap": 424,
+   "stuff_ceg_light": 200,
+   "stuff_ceg_mid": 100
+  },
+  "head_clearance": 0.0835,
+  "closest_point": [
+   0.223,
+   0.725,
+   0.055
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.294,
+  "waist_half": [
+   0.298,
+   0.293
+  ]
+ },
+ "ce_gear_tacvest_hulk": {
+  "tris": 684,
+  "parts": 17,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.268,
+    0.268
+   ],
+   [
+    0.245,
+    0.758
+   ],
+   [
+    -0.259,
+    0.252
+   ]
+  ],
+  "materials": {
+   "ceg_strap": 424,
+   "stuff_ceg_light": 160,
+   "stuff_ceg_mid": 100
+  },
+  "head_clearance": 0.0395,
+  "closest_point": [
+   -0.193,
+   0.758,
+   -0.036
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.252,
+  "waist_half": [
+   0.268,
+   0.232
+  ]
+ },
+ "ce_gear_compositevest_male": {
+  "tris": 520,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.28,
+    0.28
+   ],
+   [
+    0.335,
+    0.738
+   ],
+   [
+    -0.18,
+    0.18
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 160,
+   "ceg_strap": 360
+  },
+  "head_clearance": 0.0448,
+  "closest_point": [
+   0.172,
+   0.738,
+   -0.045
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.18,
+  "waist_half": [
+   0.225,
+   0.174
+  ]
+ },
+ "ce_gear_compositevest_female": {
+  "tris": 576,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.244,
+    0.244
+   ],
+   [
+    0.335,
+    0.727
+   ],
+   [
+    -0.176,
+    0.176
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 216,
+   "ceg_strap": 360
+  },
+  "head_clearance": 0.0644,
+  "closest_point": [
+   0.191,
+   0.727,
+   -0.042
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.176,
+  "waist_half": [
+   0.209,
+   0.165
+  ]
+ },
+ "ce_gear_compositevest_thin": {
+  "tris": 552,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.248,
+    0.248
+   ],
+   [
+    0.335,
+    0.7
+   ],
+   [
+    -0.158,
+    0.158
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 160,
+   "ceg_strap": 392
+  },
+  "head_clearance": 0.0779,
+  "closest_point": [
+   0.175,
+   0.7,
+   -0.048
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.158,
+  "waist_half": [
+   0.192,
+   0.154
+  ]
+ },
+ "ce_gear_compositevest_fat": {
+  "tris": 576,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.336,
+    0.336
+   ],
+   [
+    0.335,
+    0.727
+   ],
+   [
+    -0.25,
+    0.25
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 216,
+   "ceg_strap": 360
+  },
+  "head_clearance": 0.0814,
+  "closest_point": [
+   0.222,
+   0.727,
+   -0.055
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.25,
+  "waist_half": [
+   0.298,
+   0.249
+  ]
+ },
+ "ce_gear_compositevest_hulk": {
+  "tris": 520,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.354,
+    0.354
+   ],
+   [
+    0.335,
+    0.761
+   ],
+   [
+    -0.209,
+    0.209
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 160,
+   "ceg_strap": 360
+  },
+  "head_clearance": 0.0363,
+  "closest_point": [
+   0.192,
+   0.761,
+   -0.036
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.209,
+  "waist_half": [
+   0.268,
+   0.196
+  ]
+ },
+ "ce_gear_exoframe_male": {
+  "tris": 528,
+  "parts": 14,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.348,
+    0.348
+   ],
+   [
+    0.13,
+    0.872
+   ],
+   [
+    -0.196,
+    0.194
+   ]
+  ],
+  "materials": {
+   "ceg_exo_main": 184,
+   "ceg_exo_core": 96,
+   "ceg_exo_dark": 248
+  },
+  "head_clearance": 0.0329,
+  "closest_point": [
+   0.254,
+   0.872,
+   -0.088
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.194,
+  "waist_half": [
+   0.221,
+   0.183
+  ]
+ },
+ "ce_gear_exoframe_female": {
+  "tris": 528,
+  "parts": 14,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.311,
+    0.311
+   ],
+   [
+    0.13,
+    0.872
+   ],
+   [
+    -0.186,
+    0.191
+   ]
+  ],
+  "materials": {
+   "ceg_exo_main": 184,
+   "ceg_exo_core": 96,
+   "ceg_exo_dark": 248
+  },
+  "head_clearance": 0.0275,
+  "closest_point": [
+   0.248,
+   0.872,
+   -0.088
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.191,
+  "waist_half": [
+   0.219,
+   0.175
+  ]
+ },
+ "ce_gear_exoframe_thin": {
+  "tris": 528,
+  "parts": 14,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.36,
+    0.36
+   ],
+   [
+    0.13,
+    0.872
+   ],
+   [
+    -0.173,
+    0.173
+   ]
+  ],
+  "materials": {
+   "ceg_exo_main": 184,
+   "ceg_exo_core": 96,
+   "ceg_exo_dark": 248
+  },
+  "head_clearance": 0.0275,
+  "closest_point": [
+   0.248,
+   0.872,
+   -0.088
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.173,
+  "waist_half": [
+   0.187,
+   0.163
+  ]
+ },
+ "ce_gear_exoframe_fat": {
+  "tris": 544,
+  "parts": 14,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.308,
+    0.308
+   ],
+   [
+    0.13,
+    0.872
+   ],
+   [
+    -0.251,
+    0.259
+   ]
+  ],
+  "materials": {
+   "ceg_exo_main": 200,
+   "ceg_exo_core": 96,
+   "ceg_exo_dark": 248
+  },
+  "head_clearance": 0.0658,
+  "closest_point": [
+   0.29,
+   0.872,
+   -0.088
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.259,
+  "waist_half": [
+   0.301,
+   0.259
+  ]
+ },
+ "ce_gear_exoframe_hulk": {
+  "tris": 528,
+  "parts": 14,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.419,
+    0.419
+   ],
+   [
+    0.13,
+    0.872
+   ],
+   [
+    -0.251,
+    0.247
+   ]
+  ],
+  "materials": {
+   "ceg_exo_main": 184,
+   "ceg_exo_core": 96,
+   "ceg_exo_dark": 248
+  },
+  "head_clearance": 0.1044,
+  "closest_point": [
+   0.0,
+   0.69,
+   0.196
+  ],
+  "points_inside_body": 0,
+  "eye_rays_clear": {
+   "S": 1.0,
+   "SW45": 1.0,
+   "SE45": 1.0
+  },
+  "pack_back": 0.247,
+  "waist_half": [
+   0.265,
+   0.203
+  ]
+ },
+ "ce_gear_backpack": {
+  "tris": 144,
+  "parts": 3,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.15,
+    0.15
+   ],
+   [
+    0.39,
+    0.765
+   ],
+   [
+    0.01,
+    0.172
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 48,
+   "stuff_ceg_mid": 96
+  },
+  "head_dist_male": 0.0168,
+  "pack_offset_male": 0.14,
+  "head_dist_hulk": 0.0442,
+  "pack_offset_hulk": 0.188,
+  "head_dist_fat": 0.0777,
+  "pack_offset_fat": 0.23
+ },
+ "ce_gear_tribalpack": {
+  "tris": 148,
+  "parts": 2,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.123,
+    0.123
+   ],
+   [
+    0.395,
+    0.76
+   ],
+   [
+    0.004,
+    0.14
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 100,
+   "stuff_ceg_deep": 48
+  },
+  "head_dist_male": 0.0495,
+  "pack_offset_male": 0.14,
+  "head_dist_hulk": 0.0779,
+  "pack_offset_hulk": 0.188,
+  "head_dist_fat": 0.1091,
+  "pack_offset_fat": 0.23
+ },
+ "ce_gear_radiopack": {
+  "tris": 60,
+  "parts": 5,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.109,
+    0.109
+   ],
+   [
+    0.38,
+    0.995
+   ],
+   [
+    0.0,
+    0.12
+   ]
+  ],
+  "materials": {
+   "ceg_radio": 12,
+   "ceg_radio_dark": 36,
+   "ceg_black": 12
+  },
+  "head_dist_male": 0.0218,
+  "pack_offset_male": 0.14,
+  "head_dist_hulk": 0.0696,
+  "pack_offset_hulk": 0.188,
+  "head_dist_fat": 0.112,
+  "pack_offset_fat": 0.23
+ },
+ "ce_gear_platehelmet": {
+  "tris": 596,
+  "parts": 2,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.294,
+    0.294
+   ],
+   [
+    0.795,
+    1.296
+   ],
+   [
+    -0.274,
+    0.353
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 560,
+   "ceg_black": 36
+  },
+  "points_inside_head": 0
+ },
+ "ce_gear_gasmask": {
+  "tris": 500,
+  "parts": 10,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.269,
+    0.269
+   ],
+   [
+    0.79,
+    1.095
+   ],
+   [
+    -0.292,
+    0.232
+   ]
+  ],
+  "materials": {
+   "ceg_mask": 180,
+   "ceg_mask_dark": 168,
+   "ceg_lens": 80,
+   "ceg_mask_light": 72
+  },
+  "points_inside_head": 0
+ },
+ "ce_gear_improvgasmask": {
+  "tris": 376,
+  "parts": 7,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.262,
+    0.262
+   ],
+   [
+    0.79,
+    0.993
+   ],
+   [
+    -0.262,
+    0.231
+   ]
+  ],
+  "materials": {
+   "ceg_cloth": 104,
+   "ceg_mask_dark": 176,
+   "ceg_lens": 64,
+   "ceg_mask_light": 32
+  },
+  "points_inside_head": 0
+ },
+ "ce_gear_nv_simple": {
+  "tris": 256,
+  "parts": 5,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.251,
+    0.251
+   ],
+   [
+    0.915,
+    1.272
+   ],
+   [
+    -0.362,
+    0.233
+   ]
+  ],
+  "materials": {
+   "ceg_nv_strap": 180,
+   "ceg_nv_body": 44,
+   "ceg_nv_lens": 32
+  },
+  "points_inside_head": 0
+ },
+ "ce_gear_nv_advanced": {
+  "tris": 460,
+  "parts": 12,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.251,
+    0.251
+   ],
+   [
+    0.921,
+    1.272
+   ],
+   [
+    -0.335,
+    0.233
+   ]
+  ],
+  "materials": {
+   "ceg_nv_harness": 180,
+   "ceg_nv_body": 24,
+   "ceg_nv_tube": 128,
+   "ceg_nv_lens": 128
+  },
+  "points_inside_head": 0
+ },
+ "ce_gear_shield_melee": {
+  "tris": 92,
+  "parts": 2,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.268,
+    0.268
+   ],
+   [
+    -0.268,
+    0.268
+   ],
+   [
+    -0.086,
+    -0.006
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_light": 32,
+   "ceg_shield_boss": 60
+  }
+ },
+ "ce_gear_shield_ballistic": {
+  "tris": 284,
+  "parts": 2,
+  "open_edges": 0,
+  "nonmanifold_edges": 0,
+  "degenerate": 0,
+  "bbox": [
+   [
+    -0.22,
+    0.22
+   ],
+   [
+    -0.25,
+    0.48
+   ],
+   [
+    -0.072,
+    -0.004
+   ]
+  ],
+  "materials": {
+   "stuff_ceg_shield": 248,
+   "ceg_slit": 36
+  }
+ }
+}

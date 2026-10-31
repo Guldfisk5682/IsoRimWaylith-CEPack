@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack, model batch 1: CE's manned turrets (models from tools/make_ce_b1.py, approved
+     2026-10-30). As IsoRim's own turrets (R3D_Turret_*): <model> = the base, built facing north as CE's base art and turned
+     with the building; <topModel> = the gun, barrel along +x from its yaw pivot, drawn at topHeight (= the bore) and turned
+     to the turret's aim. IsoRim takes the muzzle (shots, flashes) from the gun model's barrel end. Fixed colours from CE's
+     art (Models/ce_b1.mtl). -->
+<Defs>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_M240B</defName>
+    <thingDef>Turret_M240B</thingDef>
+    <model>Models/ce_m240b_base.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_m240b_gun.obj</topModel>
+    <topHeight>0.48</topHeight>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_KPV</defName>
+    <thingDef>Turret_KPV</thingDef>
+    <model>Models/ce_kpv_base.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_kpv_gun.obj</topModel>
+    <topHeight>0.62</topHeight>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_AGSThirty</defName>
+    <thingDef>Turret_AGSThirty</thingDef>
+    <model>Models/ce_ags30_base.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(1, 1)</builtFor>
+    <topModel>Models/ce_ags30_gun.obj</topModel>
+    <topHeight>0.40</topHeight>
+  </IsoRim.ModelDef>
+  <IsoRim.ModelDef>
+    <defName>R3D_CE_Turret_Flak</defName>
+    <thingDef>Turret_Flak</thingDef>
+    <model>Models/ce_flak_base.obj</model>
+    <surfaceHeight>0.00</surfaceHeight>
+    <builtFor>(3, 3)</builtFor>
+    <topModel>Models/ce_flak_gun.obj</topModel>
+    <topHeight>1.00</topHeight>
+  </IsoRim.ModelDef>
+</Defs>

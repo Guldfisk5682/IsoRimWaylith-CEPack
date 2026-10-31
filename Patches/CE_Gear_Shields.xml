@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack: CE shield models, only with IsoRim Api 43 (ApparelModelDef.shown). CE's
+     Apparel_Shield overrides DrawWornExtras but draws through its render node, so IsoRim's Default rule would never show
+     the model; shown = Weapon shows it exactly while the game shows the weapon (drafted), as CE draws the shield. On an
+     older IsoRim the shields keep no 3D model and nothing else changes. -->
+<Patch>
+  <Operation Class="IsoRimCEPack.PatchOperation_IfIsoRimApi">
+    <minVersion>43</minVersion>
+    <apply Class="PatchOperationAdd">
+      <xpath>Defs</xpath>
+      <value>
+        <IsoRim.ApparelModelDef>
+          <defName>R3D_CE_MeleeShield</defName>
+          <apparel>CE_Apparel_MeleeShield</apparel>
+          <slot>Shield</slot>
+          <model>Models/ce_gear_shield_melee.obj</model>
+          <shown>Weapon</shown>
+        </IsoRim.ApparelModelDef>
+        <IsoRim.ApparelModelDef>
+          <defName>R3D_CE_BallisticShield</defName>
+          <apparel>CE_Apparel_BallisticShield</apparel>
+          <slot>Shield</slot>
+          <model>Models/ce_gear_shield_ballistic.obj</model>
+          <shown>Weapon</shown>
+        </IsoRim.ApparelModelDef>
+      </value>
+    </apply>
+  </Operation>
+</Patch>

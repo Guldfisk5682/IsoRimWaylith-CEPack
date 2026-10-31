@@ -1,0 +1,9 @@
+# IsoRim Waylith - CE Pack: ammo colours for nail / std, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_shell
+Kd 0.339 0.339 0.339
+newmtl ceammo_band
+Kd 0.271 0.271 0.271
+newmtl ceammo_box
+Kd 0.712 0.644 0.610
+newmtl ceammo_lid
+Kd 0.542 0.508 0.440

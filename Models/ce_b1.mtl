@@ -1,0 +1,83 @@
+# IsoRim Waylith - Combat Extended Pack, model batch 1: CE's manned turrets. Fixed colours sampled from CE's
+# textures (lifted ~1.1x for the 3D shading, as IsoRim's other building colours); metal parts carry IsoRim's Metal swatch.
+newmtl ceb1_black
+Kd 0.164 0.164 0.164
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_grey
+Kd 0.332 0.332 0.332
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_m240_barrel
+Kd 0.371 0.375 0.384
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_m240_hider
+Kd 0.328 0.328 0.336
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_m240_ammo
+Kd 0.772 0.669 0.384
+newmtl ceb1_kpv_feet
+Kd 0.358 0.362 0.371
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_kpv_receiver
+Kd 0.276 0.276 0.276
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_kpv_cradle
+Kd 0.298 0.298 0.298
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_kpv_jacket
+Kd 0.255 0.250 0.259
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_kpv_ammo
+Kd 0.686 0.595 0.341
+newmtl ceb1_kpv_wood
+Kd 0.539 0.384 0.211
+newmtl ceb1_kpv_muzzle
+Kd 0.311 0.306 0.315
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_leg
+Kd 0.440 0.440 0.220
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_olive
+Kd 0.552 0.552 0.276
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_rear
+Kd 0.220 0.220 0.220
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_front
+Kd 0.332 0.332 0.332
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_barrel
+Kd 0.263 0.259 0.263
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_drum
+Kd 0.496 0.496 0.250
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_ags_handle
+Kd 0.151 0.134 0.138
+newmtl ceb1_ags_sight
+Kd 0.289 0.280 0.289
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_light
+Kd 0.707 0.686 0.660
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_high
+Kd 0.738 0.725 0.707
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_barrel
+Kd 0.656 0.634 0.608
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_dark
+Kd 0.242 0.220 0.220
+newmtl ceb1_flak_cap
+Kd 0.410 0.410 0.410
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_seat
+Kd 0.548 0.453 0.341
+newmtl ceb1_flak_arm
+Kd 0.604 0.587 0.565
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_collar
+Kd 0.595 0.578 0.556
+map_Kd IsoRim/Swatches/Metal
+newmtl ceb1_flak_ped
+Kd 0.457 0.444 0.427
+map_Kd IsoRim/Swatches/Metal

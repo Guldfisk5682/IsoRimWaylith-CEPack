@@ -1,0 +1,9 @@
+# IsoRim Waylith - CE Pack: ammo colours for apkws / heat, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_body
+Kd 0.915 0.915 0.915
+newmtl ceammo_warhead
+Kd 0.305 0.339 0.237
+newmtl ceammo_nose
+Kd 0.305 0.339 0.237
+newmtl ceammo_nozzle
+Kd 0.745 0.373 0.102

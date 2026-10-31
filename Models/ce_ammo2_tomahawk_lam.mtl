@@ -1,0 +1,9 @@
+# IsoRim Waylith - CE Pack: ammo colours for tomahawk / lam, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_body
+Kd 0.949 0.949 0.949
+newmtl ceammo_nose
+Kd 0.813 0.813 0.813
+newmtl ceammo_band
+Kd 0.542 0.542 0.542
+newmtl ceammo_fin
+Kd 0.745 0.745 0.745

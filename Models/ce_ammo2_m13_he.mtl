@@ -1,0 +1,11 @@
+# IsoRim Waylith - CE Pack: ammo colours for m13 / he, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_body
+Kd 0.813 0.813 0.813
+newmtl ceammo_nose
+Kd 0.881 0.881 0.881
+newmtl ceammo_tail
+Kd 0.678 0.678 0.678
+newmtl ceammo_band
+Kd 0.610 0.610 0.610
+newmtl ceammo_fin
+Kd 0.779 0.779 0.779

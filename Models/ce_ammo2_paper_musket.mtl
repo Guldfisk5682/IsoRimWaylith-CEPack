@@ -1,0 +1,19 @@
+# IsoRim Waylith - CE Pack: ammo colours for paper / musket, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_ring
+Kd 0.813 0.813 0.745
+newmtl ceammo_paper
+Kd 0.813 0.813 0.745
+newmtl ceammo_ball
+Kd 0.610 0.610 0.542
+newmtl ceammo_powder
+Kd 0.203 0.203 0.203
+newmtl ceammo_pouch
+Kd 0.610 0.440 0.203
+newmtl ceammo_pouchDark
+Kd 0.407 0.271 0.136
+newmtl ceammo_wood
+Kd 0.542 0.339 0.271
+map_Kd IsoRim/Swatches/Wood
+newmtl ceammo_woodDark
+Kd 0.407 0.271 0.203
+map_Kd IsoRim/Swatches/Wood

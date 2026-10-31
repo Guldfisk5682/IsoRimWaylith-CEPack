@@ -1,0 +1,14 @@
+# IsoRim Waylith - CE Pack: ammo colours for rcl84 / inc, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_proj
+Kd 0.813 0.203 0.339
+newmtl ceammo_band
+Kd 1.000 1.000 0.745
+newmtl ceammo_crate
+Kd 0.813 0.203 0.339
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_crateDark
+Kd 0.678 0.203 0.271
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_case
+Kd 0.407 0.407 0.407
+map_Kd IsoRim/Swatches/Metal

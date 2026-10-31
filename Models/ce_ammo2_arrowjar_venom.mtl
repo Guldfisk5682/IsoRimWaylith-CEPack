@@ -1,0 +1,13 @@
+# IsoRim Waylith - CE Pack: ammo colours for arrowjar / venom, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_shaft
+Kd 0.678 0.474 0.339
+newmtl ceammo_head
+Kd 0.407 0.407 0.407
+newmtl ceammo_fletch
+Kd 0.339 0.610 0.203
+newmtl ceammo_quiver
+Kd 0.474 0.542 0.407
+newmtl ceammo_quiverDark
+Kd 0.678 0.745 0.678
+newmtl ceammo_jar
+Kd 0.339 0.610 0.203

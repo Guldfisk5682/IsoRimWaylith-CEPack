@@ -1,0 +1,19 @@
+# IsoRim Waylith - CE Pack: ammo colours for grenade / dp, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_nose
+Kd 0.779 0.610 0.305
+newmtl ceammo_band
+Kd 0.169 0.169 0.237
+newmtl ceammo_body
+Kd 0.474 0.508 0.508
+newmtl ceammo_link
+Kd 0.237 0.237 0.237
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_can
+Kd 0.271 0.305 0.407
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_canDark
+Kd 0.169 0.203 0.271
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_canLight
+Kd 0.407 0.440 0.508
+map_Kd IsoRim/Swatches/Metal

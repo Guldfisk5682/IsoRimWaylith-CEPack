@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- IsoRim Waylith - Combat Extended Pack: written by tools/make_ce_ammo_defs.js (do not edit by hand). -->
+<Patch>
+  <!-- Every generic look also binds things drawn with its CE texture (other mods' ammo reusing CE's art, CE's Halo defs;
+       on IsoRim 16..41, without model rules, the calibres too). A thingDef entry or the model rule still wins. -->
+  <Operation Class="IsoRimCEPack.PatchOperation_IfIsoRimApi">
+    <minVersion>16</minVersion>
+    <apply Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_ab"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/AB</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_anti"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/ANTI</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_emp"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/EMP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_he"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_inc"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/INC</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_artillery_smk"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Howitzer/SMK</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_heavy_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Tank/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_heavy_apcr"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Tank/APCR</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_heavy_emp"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Tank/EMP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_heavy_he"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Tank/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_heavy_heat"]</xpath>
+          <value><graphicPath>Things/Ammo/Cannon/Tank/HEAT</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chcells_conc"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/LargeConc</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chcells_ion"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/LargeIon</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chcells_reg"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/LargeRegular</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_conc"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/MediumConc</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_ion"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/MediumIon</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mechcells_mech"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/MediumMech</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_reg"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/MediumRegular</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chshotgun_conc"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/ShotgunConc</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chshotgun_ion"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/ShotgunIon</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chshotgun_reg"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/ShotgunRegular</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_conc_small"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/SmallConc</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_ion_small"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/SmallIon</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_chmag_reg_small"]</xpath>
+          <value><graphicPath>Things/Ammo/Charged/SmallRegular</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_fuelcell_demo"]</xpath>
+          <value><graphicPath>Things/Ammo/FuelCell/Large</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_grenade_air"]</xpath>
+          <value><graphicPath>Things/Ammo/GrenadeLauncher/AIR</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_grenade_dp"]</xpath>
+          <value><graphicPath>Things/Ammo/GrenadeLauncher/DP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_grenade_emp"]</xpath>
+          <value><graphicPath>Things/Ammo/GrenadeLauncher/EMP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_grenade_he"]</xpath>
+          <value><graphicPath>Things/Ammo/GrenadeLauncher/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_grenade_smk"]</xpath>
+          <value><graphicPath>Things/Ammo/GrenadeLauncher/SMK</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_highcal_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_light_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/Bofors/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_light_he"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/Bofors/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_light_sabot"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/Bofors/Sabot</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_highcal_fmj"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/FMJ</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_highcal_he"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_highcal_inc"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/Incendiary</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_highcal_sabot"]</xpath>
+          <value><graphicPath>Things/Ammo/HighCaliber/Sabot</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_airburst"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Airburst</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_antigrain"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Antigrain</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_deadlife"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Deadlife</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_emp"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/EMP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_firefoam"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Firefoam</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_he"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_inc"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Incendiary</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_smoke"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Smoke</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_mortar_toxic"]</xpath>
+          <value><graphicPath>Things/Ammo/Mortar/Toxic</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_pistol_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/Pistol/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_pistol_fmj"]</xpath>
+          <value><graphicPath>Things/Ammo/Pistol/FMJ</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_pistol_hp"]</xpath>
+          <value><graphicPath>Things/Ammo/Pistol/HP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_revolver_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/Revolver/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_revolver_fmj"]</xpath>
+          <value><graphicPath>Things/Ammo/Revolver/FMJ</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_revolver_hp"]</xpath>
+          <value><graphicPath>Things/Ammo/Revolver/HP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_ap"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_ap_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/AP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_fmj_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/FMJ</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_he_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_hp_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/HP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_inc_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/Incendiary</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_sabot_battlerifle"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Battlerifle/Sabot</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_fmj"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/FMJ</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_he"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/HE</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_hp"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/HP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_inc"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Incendiary</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_rifle_sabot"]</xpath>
+          <value><graphicPath>Things/Ammo/Rifle/Sabot</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_shotgun_beanbag"]</xpath>
+          <value><graphicPath>Things/Ammo/Shotgun/Beanbag</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_shotgun_emp"]</xpath>
+          <value><graphicPath>Things/Ammo/Shotgun/EMP</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_shotgun_shot"]</xpath>
+          <value><graphicPath>Things/Ammo/Shotgun/Shot</graphicPath></value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>/Defs/IsoRim.ModelDef[defName="R3D_CE_shotgun_slug"]</xpath>
+          <value><graphicPath>Things/Ammo/Shotgun/Slug</graphicPath></value>
+        </li>
+      </operations>
+    </apply>
+  </Operation>
+  <!-- Mortar shells: CE gives the game's shells its own art; IsoRim's vanilla-look entries make way for R3D_CE_Shell_*. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/IsoRim.ModelDef[defName="R3D_Shell_HighExplosive" or defName="R3D_Shell_Incendiary" or defName="R3D_Shell_EMP" or defName="R3D_Shell_Firefoam" or defName="R3D_Shell_Smoke" or defName="R3D_Shell_AntigrainWarhead" or defName="R3D_Shell_Toxic" or defName="R3D_Shell_Deadlife"]</xpath>
+    <match Class="PatchOperationRemove">
+      <xpath>/Defs/IsoRim.ModelDef[defName="R3D_Shell_HighExplosive" or defName="R3D_Shell_Incendiary" or defName="R3D_Shell_EMP" or defName="R3D_Shell_Firefoam" or defName="R3D_Shell_Smoke" or defName="R3D_Shell_AntigrainWarhead" or defName="R3D_Shell_Toxic" or defName="R3D_Shell_Deadlife"]</xpath>
+    </match>
+  </Operation>
+</Patch>

@@ -1,0 +1,16 @@
+# IsoRim Waylith - CE Pack: ammo colours for chmag / ion, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_band
+Kd 0.169 0.474 0.610
+newmtl ceammo_cell
+Kd 0.847 0.847 0.779
+newmtl ceammo_cap
+Kd 0.508 0.508 0.474
+newmtl ceammo_mag
+Kd 0.712 0.712 0.644
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_magDark
+Kd 0.474 0.474 0.440
+newmtl ceammo_case2
+Kd 0.915 0.915 0.847
+newmtl ceammo_case2Dark
+Kd 0.745 0.745 0.678

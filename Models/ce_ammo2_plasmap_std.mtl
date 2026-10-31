@@ -1,0 +1,19 @@
+# IsoRim Waylith - CE Pack: ammo colours for plasmap / std, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_block
+Kd 0.339 0.339 0.339
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_stripe
+Kd 0.203 0.203 0.203
+newmtl ceammo_light
+Kd 0.000 0.745 0.949
+newmtl ceammo_grille
+Kd 0.136 0.136 0.136
+newmtl ceammo_case
+Kd 0.881 0.881 0.881
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_caseDark
+Kd 0.610 0.610 0.610
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_caseStripe
+Kd 0.881 0.271 0.203
+map_Kd IsoRim/Swatches/Metal

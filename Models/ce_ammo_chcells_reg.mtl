@@ -1,0 +1,11 @@
+# IsoRim Waylith - CE Pack: ammo colours for chcells / reg, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_band
+Kd 0.949 0.813 0.034
+newmtl ceammo_cell
+Kd 0.847 0.847 0.779
+newmtl ceammo_cap
+Kd 0.508 0.508 0.474
+newmtl ceammo_case2
+Kd 0.915 0.915 0.847
+newmtl ceammo_case2Dark
+Kd 0.508 0.508 0.474

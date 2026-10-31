@@ -1,0 +1,7 @@
+# IsoRim Waylith - CE Pack: ammo colours for grape / grape, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_bag
+Kd 0.915 0.847 0.745
+newmtl ceammo_cord
+Kd 0.373 0.305 0.271
+newmtl ceammo_shot
+Kd 0.644 0.576 0.508

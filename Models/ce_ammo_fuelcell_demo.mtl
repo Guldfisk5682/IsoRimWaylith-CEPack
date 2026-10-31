@@ -1,0 +1,7 @@
+# IsoRim Waylith - CE Pack: ammo colours for fuelcell / demo, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_body
+Kd 0.203 0.203 0.203
+newmtl ceammo_window
+Kd 0.712 0.576 0.745
+newmtl ceammo_mark
+Kd 1.000 0.881 0.203

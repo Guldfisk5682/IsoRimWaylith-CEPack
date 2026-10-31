@@ -1,0 +1,15 @@
+# IsoRim Waylith - CE Pack: ammo colours for spg9 / heat, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_warhead
+Kd 0.440 0.440 0.203
+newmtl ceammo_body
+Kd 0.373 0.373 0.169
+newmtl ceammo_band
+Kd 0.712 0.610 0.271
+newmtl ceammo_mark
+Kd 0.440 0.440 0.203
+newmtl ceammo_crate
+Kd 0.271 0.271 0.407
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_crateDark
+Kd 0.136 0.203 0.271
+map_Kd IsoRim/Swatches/Metal

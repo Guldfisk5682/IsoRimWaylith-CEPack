@@ -1,0 +1,7 @@
+# IsoRim Waylith - CE Pack: ammo colours for powder / burst, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_cord
+Kd 0.712 0.271 0.237
+newmtl ceammo_bag
+Kd 0.915 0.847 0.745
+newmtl ceammo_shot
+Kd 0.271 0.271 0.271

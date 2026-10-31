@@ -1,0 +1,7 @@
+# IsoRim Waylith - CE Pack: ammo colours for sling / steel, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_pebble
+Kd 0.407 0.407 0.407
+newmtl ceammo_sack
+Kd 0.339 0.339 0.203
+newmtl ceammo_sackDark
+Kd 0.271 0.271 0.203

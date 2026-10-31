@@ -1,0 +1,11 @@
+# IsoRim Waylith - CE Pack: ammo colours for bolt / stone, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_shaft
+Kd 0.678 0.542 0.339
+newmtl ceammo_head
+Kd 0.542 0.542 0.542
+newmtl ceammo_fletch
+Kd 0.881 0.881 0.678
+newmtl ceammo_quiver
+Kd 0.949 0.813 0.712
+newmtl ceammo_quiverDark
+Kd 0.813 0.678 0.610

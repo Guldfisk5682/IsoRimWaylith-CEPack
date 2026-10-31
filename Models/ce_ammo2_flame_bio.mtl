@@ -1,0 +1,13 @@
+# IsoRim Waylith - CE Pack: ammo colours for flame / bio, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_tank
+Kd 0.474 0.339 0.339
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_mark
+Kd 0.610 0.407 0.474
+newmtl ceammo_hose
+Kd 0.203 0.203 0.203
+newmtl ceammo_valve
+Kd 0.542 0.542 0.542
+newmtl ceammo_frame
+Kd 0.271 0.271 0.271
+map_Kd IsoRim/Swatches/Metal

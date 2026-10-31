@@ -1,0 +1,11 @@
+# IsoRim Waylith - CE Pack: ammo colours for ballgren / std, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_ball
+Kd 0.169 0.136 0.169
+newmtl ceammo_fuse
+Kd 0.474 0.474 0.339
+newmtl ceammo_wood
+Kd 0.542 0.407 0.271
+map_Kd IsoRim/Swatches/Wood
+newmtl ceammo_woodDark
+Kd 0.339 0.203 0.068
+map_Kd IsoRim/Swatches/Wood

@@ -1,0 +1,18 @@
+# IsoRim Waylith - CE Pack: ammo colours for revolver / ap, sampled from Combat Extended's textures (x1.08 lift).
+newmtl ceammo_case
+Kd 0.847 0.813 0.542
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_tip
+Kd 0.949 0.949 0.949
+newmtl ceammo_loader
+Kd 0.440 0.440 0.440
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_can
+Kd 0.508 0.474 0.474
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_canDark
+Kd 0.339 0.339 0.339
+map_Kd IsoRim/Swatches/Metal
+newmtl ceammo_canLight
+Kd 0.712 0.678 0.678
+map_Kd IsoRim/Swatches/Metal
