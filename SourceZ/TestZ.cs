@@ -325,6 +325,11 @@ namespace IsoRimCEPackZ
                     script = Script();
                 }
                 Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+                if (ticksLeft < 0)
+                {
+                    ticksLeft++;   // (a check waiting rendered frames, not ticks: a negative wait; posture checks)
+                    return;
+                }
                 if (ticksLeft > 0)
                 {
                     int n = Mathf.Min(ticksLeft, 250);
@@ -624,6 +629,9 @@ namespace IsoRimCEPackZ
                     break;
                 case "save":
                     checks = new[] { SaveReload(true), SaveReload(false) };
+                    break;
+                case "posture":
+                    checks = PostureChecks();
                     break;
                 default:
                     checks = new[] { Balcony(), SlabBlocks(), SlabMidBurst(), Stairwell(), Parapet(), Mortar(), Grenades(), Instant(), Explosions(), Suppression(), Danger(), ShieldChecks(), SameFloorAreas(), SlabEdge() };

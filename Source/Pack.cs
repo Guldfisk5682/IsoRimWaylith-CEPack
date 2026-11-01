@@ -38,13 +38,15 @@ namespace IsoRimCEPack
     //    DynamicDrawManager.DrawDynamicThings postfix (the game culls things of hidden floors).
     //
     // Height mapping. CE measures heights in its own units: a full wall (any Fillage.Full building) is
-    // CollisionVertical.WallCollisionHeight = 2 units high, a cover building its fillPercent, a standing human about 1.75
-    // (CE's body bounds), shots fired at about 85% of the shooter's height. IsoRim draws a full wall Api.WallHeight cells
-    // high (1.2 by default). A CE height is drawn at  ce * Api.WallHeight / CollisionVertical.WallCollisionHeight  cells
-    // (0.6 at the default wall height), so a shot passing over a wall or sandbag in CE's flight passes over it on screen
-    // too. Pawns come out close with IsoRim's figures at the default wall height (a human's chest, CE ~1.2, at 0.72 of a
-    // 1.25-cell figure); IsoRim does not scale figures with the wall height option, so a very high wall setting lifts the
-    // shots relative to the figures.
+    // CollisionVertical.WallCollisionHeight = 2 units high, a cover building its fillPercent, a standing adult human 1.0
+    // (CE's body height factor, CE_Utility.GetCollisionBodyFactors), shots fired at 0.85 of the shooter's height
+    // (CollisionVertical.MiddleHeight); a crouching pawn's height comes down to the partial cover beside it. IsoRim draws a
+    // full wall Api.WallHeight cells high (1.2 by default). A CE height is drawn at
+    // ce * Api.WallHeight / CollisionVertical.WallCollisionHeight  cells (0.6 at the default wall height), so a shot passing
+    // over a wall or sandbag in CE's flight passes over it on screen too. IsoRim's figures are taller than that mapping of
+    // CE's pawns (a standing adult 1.12 cells, the gun at its shoulder at 0.66, against CE's 0.6 and shots at 0.51): the drawn
+    // shot starts at the drawn muzzle and fades into CE's flight (above). IsoRim does not scale figures with the wall height
+    // option. Crouching, crouch-walking and hunkering are shown on the figures (Posture.cs, IsoRim Api 45).
     [StaticConstructorOnStartup]
     public static class Pack
     {
@@ -77,6 +79,17 @@ namespace IsoRimCEPack
                     inner = inner.InnerException;
                 }
                 Log.Error(Tag + "Setup failed (CE's projectiles stay as CE draws them): " + inner.GetType().Name + ": " + inner.Message);
+            }
+            try
+            {
+                if (IsoRim.Api.Version >= 45)
+                {
+                    Posture.Register();   // CE's crouch, crouch-walk and hunker on IsoRim's figures
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error(Tag + "Postures not set up (figures stand as before): " + e.GetType().Name + ": " + e.Message);
             }
         }
 
