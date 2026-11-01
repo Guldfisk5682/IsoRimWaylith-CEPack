@@ -23,12 +23,17 @@
     <li>Peren.IsoRimProjectZ</li>
     <li>CETeam.CombatExtended</li>
   </loadAfter>
+  <incompatibleWith>
+    <li>wowgag.CEPerformancePatch</li>
+  </incompatibleWith>
   <description>Combat Extended in IsoRim's 3D view and on IsoRimZ floors.
 
 - Bullets, shells and grenades fly at Combat Extended's real height from the muzzle; mortar shells on their real arc
 - 3D models for CE's turrets, hand grenades, shells and ammo; retextured guns show their own art
 - Ammo cooking off flashes and throws sparks (can be turned off in the mod settings)
 - With IsoRimZ: shooting, explosions, suppression and shields work between floors
+
+Not compatible with Combat Extended Performance Patch.
 
 Combat Extended logo by the CE team, used under CC BY-NC-SA 4.0.
 
@@ -38,6 +43,8 @@ Combat Extended logo by the CE team, used under CC BY-NC-SA 4.0.
 - CE 炮塔、手雷、炮弹和弹药的 3D 模型；CE 重绘过的枪械显示它自己的贴图
 - 弹药殉爆时会有闪光和火花（可在 mod 设置中关闭）
 - 配合 IsoRimZ：射击、爆炸、压制和护盾在楼层之间正常生效
+
+与 Combat Extended Performance Patch 不兼容。
 
 Combat Extended 图标来自 CE 团队，依据 CC BY-NC-SA 4.0 使用。</description>
 </ModMetaData>
