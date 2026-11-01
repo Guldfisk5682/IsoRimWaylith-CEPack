@@ -23,15 +23,21 @@
     <li>Peren.IsoRimProjectZ</li>
     <li>CETeam.CombatExtended</li>
   </loadAfter>
-  <description>Combat Extended in IsoRim's 3D view.
+  <description>Combat Extended in IsoRim's 3D view and on IsoRimZ floors.
 
-- Bullets, shells and grenades fly at Combat Extended's real height, from the muzzle
-- Mortar shells drawn on their real arc, like IsoRim's own shells
-- Works on IsoRimZ floors
+- Bullets, shells and grenades fly at Combat Extended's real height from the muzzle; mortar shells on their real arc
+- 3D models for CE's turrets, hand grenades, shells and ammo; retextured guns show their own art
+- Ammo cooking off flashes and throws sparks (can be turned off in the mod settings)
+- With IsoRimZ: shooting, explosions, suppression and shields work between floors
 
-让 Combat Extended 在 IsoRim 的 3D 视角中正常显示。
+Combat Extended logo by the CE team, used under CC BY-NC-SA 4.0.
 
-- 子弹、炮弹和手雷按 Combat Extended 的真实高度从枪口飞出
-- 迫击炮弹沿真实弹道显示，与 IsoRim 自己的炮弹一致
-- 支持 IsoRimZ 的楼层</description>
+让 Combat Extended 在 IsoRim 的 3D 视角和 IsoRimZ 的楼层上正常工作。
+
+- 子弹、炮弹和手雷按 Combat Extended 的真实高度从枪口飞出；迫击炮弹沿真实弹道飞行
+- CE 炮塔、手雷、炮弹和弹药的 3D 模型；CE 重绘过的枪械显示它自己的贴图
+- 弹药殉爆时会有闪光和火花（可在 mod 设置中关闭）
+- 配合 IsoRimZ：射击、爆炸、压制和护盾在楼层之间正常生效
+
+Combat Extended 图标来自 CE 团队，依据 CC BY-NC-SA 4.0 使用。</description>
 </ModMetaData>
