@@ -36,6 +36,7 @@ namespace IsoRimCEPackZ
             public Map map;
             public Layout L;
             public int frame;
+            public Thing viewer;
         }
 
         [ThreadStatic] private static State cur;
@@ -48,9 +49,9 @@ namespace IsoRimCEPackZ
             {
                 return old;
             }
-            Map map = viewer.Spawned ? viewer.Map : null;
+            Map map = QueryContext.MapOf(viewer);
             Layout L = Layout.Of(map);
-            cur = new State { map = map, L = L, frame = L != null ? L.FrameOf(viewer.Position) : Layout.None };
+            cur = new State { map = map, L = L, frame = L != null ? L.FrameOf(viewer.Position) : Layout.None, viewer = viewer };
             return old;
         }
 
@@ -332,6 +333,10 @@ namespace IsoRimCEPackZ
             {
                 return t.DrawPos;
             }
+            if (cur.viewer != null && TargetGeometry.Resolve(t, new TargetQuery(cur.map, cur.viewer, cur.viewer.Position,
+                (cur.viewer as IAttackTargetSearcher)?.CurrentEffectiveVerb,
+                ((cur.viewer as IAttackTargetSearcher)?.CurrentEffectiveVerb as Verb_LaunchProjectileCE)?.Projectile), out var aim) == GeometryStatus.Success)
+                return L.FromVirtual(aim.PointVirtual, cur.frame);
             int kt = L.FrameOf(t.Position);
             if (kt == cur.frame || kt == Layout.None || cur.frame == Layout.None)
             {

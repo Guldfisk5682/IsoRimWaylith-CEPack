@@ -125,21 +125,27 @@ namespace IsoRimCEPackZ
             Try(h, "World shells", WorldShells.Patch, false, false, typeof(WorldShells), typeof(Layout));
             Try(h, "Pod drops", PodDrops.Patch, false, false, typeof(PodDrops), typeof(Layout));
             // areas (not key: a failure leaves CE's own blasts, suppression and shields, each on its floor)
-            Try(h, "Areas", Areas.Patch, false, true, typeof(Areas), typeof(Frames));
+            bool areasOn = Try(h, "Areas", Areas.Patch, false, true, typeof(Areas), typeof(Frames));
             Try(h, "Shields", Shields.Patch, false, true, typeof(Shields), typeof(Frames));
             Try(h, "Other mods' shields", Blockers.Patch, false, true, typeof(Blockers), typeof(Shields), typeof(FrameView), typeof(Frames));
             Try(h, "Radius clips", _ => Areas.PatchClips(), false, false, typeof(Areas));
-            Try(h, "Slab hits", SlabHits.Patch, false, false, typeof(SlabHits), typeof(Layout));
+            bool slabHitsOn = Try(h, "Slab hits", SlabHits.Patch, false, false, typeof(SlabHits), typeof(Layout));
             // P4 (not key: a failure leaves that case as CE has it, on one floor): CIWS, turrets, CE's AI.
             // Harness: -cepacknop4 leaves them out (to show what the P4 checks catch).
+            bool turretsOn = false;
             if (!GenCommandLine.CommandLineArgPassed("cepacknop4"))
             {
                 Try(h, "CIWS", Ciws.Patch, false, true, typeof(Ciws), typeof(Scope), typeof(Views), typeof(Shields), typeof(Aim), typeof(Frames));
                 Try(h, "CIWS comp targets", Ciws.PatchComp, false, true, typeof(Ciws), typeof(FrameView), typeof(Shields), typeof(Aim), typeof(Frames));
-                Try(h, "Turrets", Turrets.Patch, false, true, typeof(Turrets), typeof(Scope), typeof(Views), typeof(Aim), typeof(Frames));
+                turretsOn = Try(h, "Turrets", Turrets.Patch, false, true, typeof(Turrets), typeof(Scope), typeof(Views), typeof(Aim), typeof(Frames));
                 Try(h, "AI", Ai.Patch, false, true, typeof(Ai), typeof(Scope), typeof(Views), typeof(Aim), typeof(Frames));
             }
+            PlacementQuery.Ready = turretsOn && Try(h, "Placement queries", PlacementQuery.Patch, false, false, typeof(PlacementQuery));
+            TargetGeometry.Ready = turretsOn && Try(h, "Target geometry", TargetGeometry.Patch, false, true, typeof(TargetGeometry));
+            SurfaceExplosions.Ready = areasOn && slabHitsOn && Try(h, "Surface explosions", SurfaceExplosions.Patch, false, true, typeof(SurfaceExplosions));
             Healthy = Failed.Count == 0;
+            if (!Healthy) PlacementQuery.Ready = TargetGeometry.Ready = SurfaceExplosions.Ready = false;
+            if (TargetGeometry.Ready) TargetGeometry.Activate();
             string notes = (Problems.Count > 0 ? "; failed: " + string.Join("; ", Problems) : "") + (Skipped.Count > 0 ? "; not applied without the flight patches: " + string.Join(", ", Skipped) : "");
             if (!Healthy)
             {
@@ -272,6 +278,7 @@ namespace IsoRimCEPackZ
                     return;
                 }
                 PartsOff = true;
+                PlacementQuery.Ready = TargetGeometry.Ready = SurfaceExplosions.Ready = false;
                 bool was = Healthy;
                 Healthy = false;
                 if (was)

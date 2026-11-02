@@ -29,6 +29,8 @@ namespace IsoRimCEPackZ
     {
         [ThreadStatic] private static int rootFrame;
         [ThreadStatic] private static bool rootSet;
+        [ThreadStatic] private static IntVec3 rootCell;
+        internal static IntVec3 RootOf(Verb verb) => rootSet ? rootCell : verb.caster.Position;
 
         public static void Patch(Harmony h)
         {
@@ -427,7 +429,7 @@ namespace IsoRimCEPackZ
         // A target point (any band) seen in the shooter's frame: its rows moved onto the shooter's band.
         public static Vector3 TargetInShooterFrame(Vector3 p, Verb v)
         {
-            Layout L = Layout.Of(v?.caster?.Map);
+            Layout L = Layout.Of(QueryContext.MapOf(v?.caster));
             if (L == null)
             {
                 return p;
@@ -444,7 +446,7 @@ namespace IsoRimCEPackZ
         // Storeys from the shooter up to the target (0 on one floor, no floors, void rows).
         internal static int FloorsUp(Verb v, IntVec3 target)
         {
-            Layout L = Layout.Of(v?.caster?.Map);
+            Layout L = Layout.Of(QueryContext.MapOf(v?.caster));
             if (L == null)
             {
                 return 0;
@@ -454,18 +456,24 @@ namespace IsoRimCEPackZ
             return ks == Layout.None || kt == Layout.None ? 0 : kt - ks;
         }
 
-        public static Vector3 TrueCenterIn(Thing t, Verb v) => TargetInShooterFrame(t.TrueCenter(), v);
+        private static Vector3 PointIn(Thing t, Verb v, Vector3 native)
+        {
+            Layout l = Layout.Of(QueryContext.MapOf(v?.caster));
+            return l != null && TargetGeometry.TryAim(t, v, RootOf(v), out var aim)
+                ? l.FromVirtual(aim.PointVirtual, ShooterFrame(v, l)) : TargetInShooterFrame(native, v);
+        }
+        public static Vector3 TrueCenterIn(Thing t, Verb v) => PointIn(t, v, t.TrueCenter());
 
-        public static Vector3 DrawPosIn(Thing t, Verb v) => TargetInShooterFrame(t.DrawPos, v);
+        public static Vector3 DrawPosIn(Thing t, Verb v) => PointIn(t, v, t.DrawPos);
 
         public static Vector3 ShiftedIn(ref IntVec3 c, Verb v) => TargetInShooterFrame(c.ToVector3Shifted(), v);
 
-        public static Vector3 CenterIn(ref LocalTargetInfo t, Verb v) => TargetInShooterFrame(t.CenterVector3, v);
+        public static Vector3 CenterIn(ref LocalTargetInfo t, Verb v) => t.HasThing ? DrawPosIn(t.Thing, v) : TargetInShooterFrame(t.CenterVector3, v);
 
         // a - b over the ground (cells on two floors: their ground cells); a - b when on one floor.
         public static IntVec3 GroundSub(IntVec3 a, IntVec3 b, Verb v)
         {
-            Layout L = Layout.Of(v?.caster?.Map);
+            Layout L = Layout.Of(QueryContext.MapOf(v?.caster));
             if (L == null)
             {
                 return a - b;
@@ -530,9 +538,10 @@ namespace IsoRimCEPackZ
         }
 
         // TryFindCEShootLineFromTo tests a shot from root, which may be a cell on another floor than the caster.
-        public static void Root_Prefix(Verb_LaunchProjectileCE __instance, IntVec3 root, out (bool, int) __state)
+        public static void Root_Prefix(Verb_LaunchProjectileCE __instance, IntVec3 root, out (bool, int, IntVec3) __state)
         {
-            __state = (rootSet, rootFrame);
+            __state = (rootSet, rootFrame, rootCell);
+            rootCell = root;
             Layout L = Layout.Of(__instance.caster?.Map);
             if (L == null)
             {
@@ -542,10 +551,11 @@ namespace IsoRimCEPackZ
             rootSet = true;
         }
 
-        public static Exception Root_Finalizer(Exception __exception, (bool, int) __state)
+        public static Exception Root_Finalizer(Exception __exception, (bool, int, IntVec3) __state)
         {
             rootSet = __state.Item1;
             rootFrame = __state.Item2;
+            rootCell = __state.Item3;
             return __exception;
         }
 
@@ -553,6 +563,12 @@ namespace IsoRimCEPackZ
         // GetTargetHeight: CE's local height over the target's floor, plus the storeys between (the shooter's frame).
         public static void TargetHeight_Postfix(Verb_LaunchProjectileCE __instance, LocalTargetInfo target, ref float __result)
         {
+            Layout l = Layout.Of(QueryContext.MapOf(__instance.caster));
+            if (l != null && TargetGeometry.TryAim(target.Thing, __instance, RootOf(__instance), out var aim))
+            {
+                __result = l.FromVirtual(aim.PointVirtual, ShooterFrame(__instance, l)).y + __instance.projectilePropsCE.aimHeightOffset;
+                return;
+            }
             int up = FloorsUp(__instance, target.Cell);
             if (up != 0)
             {
