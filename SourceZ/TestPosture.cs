@@ -416,7 +416,7 @@ namespace IsoRimCEPackZ
                 yield return w;
             }
             Out("  muzzle standing " + mOff.ToString("F3") + ", crouched " + mOn.ToString("F3") + ", difference " + (mOff.y - mOn.y).ToString("0.000") + ", drop " + drop.ToString("0.000"));
-            Check("P4 firing: crouched (AttackStatic is CE's crouch job) and the muzzle comes down by about the shoulder drop (it may sit in the sandbags now: one fixed crouch)", rc == 1f && dc == 1f && onM && offM
+            Check("P4 firing: crouched (AttackStatic is CE's crouch job; raised to CE's shot over the sandbags while firing) and the muzzle comes down by about the shoulder drop", rc > 0f && rc < 1f && Mathf.Abs(dc - rc) < 0.01f && onM && offM
                 && Mathf.Abs((mOff.y - mOn.y) - drop) < 0.05f, "rule " + rc + ", drawn " + dc + ", muzzle y " + mOff.y.ToString("0.000") + " -> " + mOn.y.ToString("0.000") + ", drop " + drop.ToString("0.000"));
             yield return 300;
             List<Shot> hits = By(p, Impacts, t0);

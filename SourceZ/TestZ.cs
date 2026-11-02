@@ -636,6 +636,9 @@ namespace IsoRimCEPackZ
                 case "drafted":
                     checks = DraftedChecks();
                     break;
+                case "popup":
+                    checks = PopupChecks();
+                    break;
                 default:
                     checks = new[] { Balcony(), SlabBlocks(), SlabMidBurst(), Stairwell(), Parapet(), Mortar(), Grenades(), Instant(), Explosions(), Suppression(), Danger(), ShieldChecks(), SameFloorAreas(), SlabEdge() };
                     break;
