@@ -26,10 +26,34 @@ namespace IsoRimCEPackZ
             // (-ceposture=1,5: only those checks; each keeps its own seed)
             Func<IEnumerator<int>>[] all = { PostureOpen, PostureSandbags, PostureEmbrasure, PostureFiring, PostureCrouchWalk, PostureHunker, PostureUpstairs, PostureSeated, PostureCards, PosturePerf, PostureRider };
             string[] only = GenCommandLine.TryGetCommandLineArg("ceposture", out string sel) && sel != null ? sel.Split(',') : null;
+            FarThreat();
             for (int i = 0; i < all.Length; i++)
             {
                 yield return only == null || only.Contains((i + 1).ToString()) ? all[i]() : Nothing();
             }
+        }
+
+        // The pack draws the drafted-idle crouch (Wait_Combat) only while the map has an active hostile threat (mode "drafted"
+        // tests that rule). These checks are of the crouch itself, so a hostile is held awake in a far corner, out of every
+        // fixture's range, for the whole mode (its own seed: the fixtures' pawns stay as before).
+        private static void FarThreat()
+        {
+            IntVec3 c = new IntVec3(240, 0, 240);
+            Wipe(236, 236, 244, 244);
+            Pawn p;
+            Rand.PushState(99001);
+            try
+            {
+                p = PawnGenerator.GeneratePawn(new PawnGenerationRequest(PawnKindDefOf.Villager, Enemy, forceGenerateNewPawn: true, canGeneratePawnRelations: false, allowAddictions: false));
+            }
+            finally
+            {
+                Rand.PopState();
+            }
+            p.equipment?.DestroyAllEquipment();
+            GenSpawn.Spawn(p, c, Map);
+            held.Add((p, c));
+            Out("far threat: " + p.LabelShort + " of " + p.Faction?.Name + " at " + c + ", map threat " + GenHostility.AnyHostileActiveThreatToPlayer(Map));
         }
 
         private static IEnumerator<int> Nothing()
@@ -675,7 +699,7 @@ namespace IsoRimCEPackZ
             Gone(p, chair);
         }
 
-        // P9: 2D cards (3D figures off): squashed about the feet in the open and behind sandbags.
+        // P9: 2D cards (3D figures off): no posture, drawn exactly as the game draws them.
         private static IEnumerator<int> PostureCards()
         {
             Out("--- P9 cards");
@@ -692,7 +716,7 @@ namespace IsoRimCEPackZ
             float drop = Drawn(a, out float ca, out _);
             Out("  card in the open: " + Posture(a));
             Out("  card behind sandbags: " + Posture(b));
-            Check("P9 cards: crouched as cards too", ca == 1f && drop > 0.15f, "crouch " + ca + ", drop " + drop.ToString("0.000"));
+            Check("P9 cards: no posture on cards", ca == 0f && drop == 0f, "crouch " + ca + ", drop " + drop.ToString("0.000"));
             foreach (int w in Pair("p9_cards", new IntVec3(50, 0, 90), false))
             {
                 yield return w;

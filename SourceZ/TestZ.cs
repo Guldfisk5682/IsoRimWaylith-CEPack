@@ -633,6 +633,9 @@ namespace IsoRimCEPackZ
                 case "posture":
                     checks = PostureChecks();
                     break;
+                case "drafted":
+                    checks = DraftedChecks();
+                    break;
                 default:
                     checks = new[] { Balcony(), SlabBlocks(), SlabMidBurst(), Stairwell(), Parapet(), Mortar(), Grenades(), Instant(), Explosions(), Suppression(), Danger(), ShieldChecks(), SameFloorAreas(), SlabEdge() };
                     break;
